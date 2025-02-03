@@ -1,0 +1,823 @@
+1
+00:00:00,667 --> 00:00:03,291
+[up-tempo music plays]
+
+2
+00:00:05,333 --> 00:00:06,250
+[music stops]
+
+3
+00:00:06,333 --> 00:00:07,250
+[all] Mum!
+
+4
+00:00:07,333 --> 00:00:09,333
+[music resumes]
+
+5
+00:00:11,083 --> 00:00:12,000
+[music stops]
+
+6
+00:00:12,083 --> 00:00:13,000
+[all] Dad!
+
+7
+00:00:13,083 --> 00:00:15,083
+[music resumes]
+
+8
+00:00:16,750 --> 00:00:17,750
+[music stops]
+
+9
+00:00:17,834 --> 00:00:18,750
+[all] Bingo!
+
+10
+00:00:18,834 --> 00:00:20,792
+[music resumes]
+
+11
+00:00:22,834 --> 00:00:26,041
+-[music stops]
+-[all] Bluey!
+
+12
+00:00:27,041 --> 00:00:28,542
+[humming]
+
+13
+00:00:28,625 --> 00:00:29,542
+Ring, ring!
+
+14
+00:00:29,625 --> 00:00:31,375
+This is the doctor's office!
+
+15
+00:00:31,458 --> 00:00:33,750
+Hello. It's Edna speaking.
+
+16
+00:00:33,834 --> 00:00:35,083
+How are you?
+
+17
+00:00:35,166 --> 00:00:37,417
+Hello, I need to see the doctor now.
+
+18
+00:00:37,500 --> 00:00:39,709
+Mm, yes, okay.
+
+19
+00:00:39,792 --> 00:00:41,917
+Sure, okay, we'll see you in 15 months.
+
+20
+00:00:42,000 --> 00:00:43,375
+Bye. Click.
+
+21
+00:00:43,458 --> 00:00:47,291
+Thank you, Doctor.
+My schnozz feels great.
+
+22
+00:00:47,375 --> 00:00:49,542
+Just keep it on for six months.
+
+23
+00:00:49,625 --> 00:00:51,125
+See ya!
+
+24
+00:00:51,208 --> 00:00:53,375
+Please choose a lollipop on your way out.
+
+25
+00:00:53,458 --> 00:00:55,083
+Why, thank you.
+
+26
+00:00:55,166 --> 00:00:56,959
+Ooh, lychee.
+
+27
+00:00:57,041 --> 00:01:00,542
+[Bluey] This episode of Bluey
+is called The Doctor.
+
+28
+00:01:00,625 --> 00:01:03,083
+Sorry about that.
+How can I help?
+
+29
+00:01:03,166 --> 00:01:04,792
+I need to see the doctor.
+
+30
+00:01:04,875 --> 00:01:07,500
+Oh, yes, I'm sure we can
+squeeze you in tightly.
+
+31
+00:01:07,583 --> 00:01:08,917
+Great!
+
+32
+00:01:09,000 --> 00:01:10,333
+Now, what's wrong with you today?
+
+33
+00:01:10,417 --> 00:01:12,417
+Nothing.
+I'm fine.
+
+34
+00:01:12,500 --> 00:01:14,000
+Honey, playing doctors,
+
+35
+00:01:14,083 --> 00:01:16,375
+you have to make up
+something wrong with you.
+
+36
+00:01:16,458 --> 00:01:18,583
+Oh, yes, of course.
+
+37
+00:01:20,041 --> 00:01:22,500
+What do you think
+should be wrong with me?
+
+38
+00:01:22,583 --> 00:01:23,875
+It's up to you.
+
+39
+00:01:23,959 --> 00:01:27,125
+Um, what if I bumped
+my knee? [giggles]
+
+40
+00:01:27,208 --> 00:01:29,000
+Okay, here's a clipboard.
+
+41
+00:01:29,083 --> 00:01:30,333
+Please take a seat.
+
+42
+00:01:30,417 --> 00:01:31,583
+The doctor won't be long.
+
+43
+00:01:33,625 --> 00:01:35,542
+Honey, you have to hobble when you walk.
+
+44
+00:01:35,625 --> 00:01:37,542
+Oh, yes.
+
+45
+00:01:42,959 --> 00:01:44,542
+Next patient, please.
+
+46
+00:01:44,625 --> 00:01:46,291
+That's me!
+
+47
+00:01:46,375 --> 00:01:48,625
+Hobble!
+
+48
+00:01:48,709 --> 00:01:50,625
+What seems to be the matter?
+
+49
+00:01:50,709 --> 00:01:52,542
+She's bumped her knee, Doctor.
+
+50
+00:01:52,625 --> 00:01:54,333
+Oh. You sure that's it?
+
+51
+00:01:54,417 --> 00:01:55,750
+Yeah, that's it.
+
+52
+00:01:55,875 --> 00:01:59,333
+Okay, we'll have that fixed in a jiffy.
+
+53
+00:01:59,417 --> 00:02:01,750
+[groans] I need to see the doctor!
+
+54
+00:02:01,834 --> 00:02:04,583
+Ooh, there's a crocodile on my head!
+
+55
+00:02:04,667 --> 00:02:07,417
+Oh, my.
+This is a real pickle.
+
+56
+00:02:07,500 --> 00:02:08,583
+-Don't worry.
+-Ohh!
+
+57
+00:02:08,667 --> 00:02:10,625
+We'll fix that in a jiffy.
+
+58
+00:02:10,709 --> 00:02:13,333
+Edna, hold my appointments.
+
+59
+00:02:13,417 --> 00:02:16,166
+Oh, I'm sorry dear.
+Please take a seat.
+
+60
+00:02:16,250 --> 00:02:18,208
+I'm sure the doctor won't be long.
+
+61
+00:02:18,291 --> 00:02:21,000
+[Bingo] This is gonna take ages!
+
+62
+00:02:21,083 --> 00:02:23,000
+Oh, okay.
+
+63
+00:02:24,583 --> 00:02:27,375
+I'm just trying to pull the mouth open!
+
+64
+00:02:27,458 --> 00:02:28,500
+[objects clattering]
+
+65
+00:02:28,583 --> 00:02:29,792
+[Lucky] Ugh!
+
+66
+00:02:29,875 --> 00:02:31,125
+-This might sting...
+-Ugh!
+
+67
+00:02:31,208 --> 00:02:32,917
+...but just for a little bit!
+
+68
+00:02:33,000 --> 00:02:34,166
+-Aah!
+-Aah!
+
+69
+00:02:34,250 --> 00:02:35,291
+[breathing heavily]
+
+70
+00:02:35,375 --> 00:02:37,083
+He's a wily one!
+
+71
+00:02:37,166 --> 00:02:38,375
+Yaaaah!
+
+72
+00:02:38,458 --> 00:02:40,166
+Oh, careful, Doctor! Aah!
+
+73
+00:02:40,250 --> 00:02:42,125
+Would you like a cup of tea
+while you wait?
+
+74
+00:02:42,208 --> 00:02:43,583
+Yes, thanks.
+
+75
+00:02:43,667 --> 00:02:45,333
+-Ugh!
+-Yaaaah!
+
+76
+00:02:45,417 --> 00:02:46,750
+Here you go.
+
+77
+00:02:46,834 --> 00:02:48,709
+Are you sure you haven't
+been attacked
+
+78
+00:02:48,792 --> 00:02:50,417
+by a giraffe or something?
+
+79
+00:02:50,500 --> 00:02:52,375
+-Um, no.
+-[Bingo] Yah!
+
+80
+00:02:52,458 --> 00:02:54,291
+Cause that would be a real pickle.
+
+81
+00:02:54,375 --> 00:02:55,458
+[Bingo] There it goes!
+
+82
+00:02:55,542 --> 00:02:56,458
+[Pop, whistle]
+
+83
+00:02:56,542 --> 00:02:57,875
+[thud]
+
+84
+00:02:57,959 --> 00:02:59,333
+Oh. Looks like she's done.
+
+85
+00:02:59,417 --> 00:03:01,959
+Out you come.
+
+86
+00:03:02,041 --> 00:03:03,542
+Beautiful, Doctor.
+
+87
+00:03:03,625 --> 00:03:06,333
+Just keep the bandages
+on for 11 years.
+
+88
+00:03:06,417 --> 00:03:08,041
+Choose a lollipop.
+
+89
+00:03:09,667 --> 00:03:10,959
+See ya.
+
+90
+00:03:11,041 --> 00:03:12,375
+Okay, who's next?
+
+91
+00:03:12,458 --> 00:03:13,583
+That's me.
+
+92
+00:03:13,667 --> 00:03:16,000
+Oh, yes -- sore knee.
+Right this way.
+
+93
+00:03:16,083 --> 00:03:18,375
+Help! I cuddled a cactus!
+
+94
+00:03:18,458 --> 00:03:19,625
+Oh, no!
+
+95
+00:03:19,709 --> 00:03:21,041
+[all] Aah!
+
+96
+00:03:21,125 --> 00:03:22,458
+And then a crocodile
+flew out of the sky
+
+97
+00:03:22,542 --> 00:03:23,625
+and bit me on the bottom!
+
+98
+00:03:23,709 --> 00:03:27,333
+My stars!
+This is a real pickle!
+
+99
+00:03:27,417 --> 00:03:31,417
+Don't worry. We'll have you
+fixed in a jiffy.
+
+100
+00:03:31,500 --> 00:03:32,458
+Oww, oww, oww,
+oww, oww!
+
+101
+00:03:32,542 --> 00:03:35,125
+Edna, hold my appointments!
+
+102
+00:03:35,208 --> 00:03:36,166
+Oww, oww, oww, oww!
+
+103
+00:03:36,250 --> 00:03:37,250
+Ohh!
+
+104
+00:03:37,333 --> 00:03:39,917
+But what about my knee?
+
+105
+00:03:40,000 --> 00:03:42,083
+-[objects rustling]
+-[Snickers groans] Oww!
+
+106
+00:03:42,166 --> 00:03:45,542
+[Bingo] Aah! Wriggling will just
+make it harder!
+
+107
+00:03:45,625 --> 00:03:48,458
+Oh, I'm sorry about the wait, Honey.
+
+108
+00:03:48,542 --> 00:03:51,417
+Am I definitely
+the next patient, Bluey?
+
+109
+00:03:51,500 --> 00:03:54,000
+You are definitely
+the next patient.
+
+110
+00:03:54,083 --> 00:03:55,917
+We need to see the doctor!
+
+111
+00:03:56,000 --> 00:03:57,500
+Oh, my!
+
+112
+00:03:57,583 --> 00:04:01,125
+I was hanging out the washing,
+and my arms fell off!
+
+113
+00:04:01,208 --> 00:04:04,417
+And I got bitten
+by seven scorpions.
+
+114
+00:04:04,500 --> 00:04:05,834
+Oh, my, my!
+
+115
+00:04:05,917 --> 00:04:09,000
+Oh, this looks like
+a real pickle.
+
+116
+00:04:09,083 --> 00:04:10,083
+-It is!
+-It is!
+
+117
+00:04:10,166 --> 00:04:12,709
+I'm never gonna see the doctor.
+
+118
+00:04:12,792 --> 00:04:14,166
+Don't worry, Honey.
+
+119
+00:04:14,250 --> 00:04:16,500
+I promise you'll be the next patient.
+
+120
+00:04:16,583 --> 00:04:17,792
+Really?
+
+121
+00:04:17,875 --> 00:04:19,667
+Yes.
+Definitely.
+
+122
+00:04:19,750 --> 00:04:21,291
+Yaaaah!
+
+123
+00:04:21,375 --> 00:04:23,375
+I need a doctor!
+
+124
+00:04:23,458 --> 00:04:24,709
+What's wrong, Rusty?
+
+125
+00:04:24,792 --> 00:04:27,166
+I accidentally ate a hippopotamus.
+
+126
+00:04:27,250 --> 00:04:31,458
+And now when I burp,
+I burp out baby hippopotamuses.
+
+127
+00:04:31,542 --> 00:04:32,709
+Burp!
+
+128
+00:04:32,792 --> 00:04:33,709
+[all] Aah!
+
+129
+00:04:33,792 --> 00:04:35,083
+Oh, no! Baby hippos!
+
+130
+00:04:35,166 --> 00:04:36,250
+Quick, Indy, grab it!
+
+131
+00:04:36,333 --> 00:04:37,542
+But I've got no arms!
+
+132
+00:04:37,625 --> 00:04:38,709
+Aah!
+
+133
+00:04:38,792 --> 00:04:40,542
+[Coco] Get 'em!
+
+134
+00:04:40,625 --> 00:04:42,333
+Get 'em out!
+Get him!
+
+135
+00:04:42,417 --> 00:04:43,583
+Come on, little wriggly one!
+
+136
+00:04:43,667 --> 00:04:45,458
+Get away, baby hippo!
+
+137
+00:04:45,542 --> 00:04:46,583
+Burp!
+
+138
+00:04:46,667 --> 00:04:47,709
+-Aah!
+-Two more!
+
+139
+00:04:47,792 --> 00:04:49,625
+Aah! Hippos everywhere!
+
+140
+00:04:49,709 --> 00:04:52,750
+Oh, my, goodness,
+this is a real pickle.
+
+141
+00:04:52,834 --> 00:04:55,291
+Rusty, you best come
+in here right away.
+
+142
+00:04:55,375 --> 00:04:57,291
+Ohhhh!
+
+143
+00:04:57,375 --> 00:04:59,417
+Edna, hold my appointments.
+
+144
+00:04:59,500 --> 00:05:01,208
+I knew it.
+
+145
+00:05:02,500 --> 00:05:04,166
+-[Bingo] Stay still!
+-[Rusty] Burp!
+
+146
+00:05:04,250 --> 00:05:06,667
+How many hippos have you got in there?
+
+147
+00:05:06,750 --> 00:05:07,834
+Can I have a lollipop?
+
+148
+00:05:07,917 --> 00:05:08,834
+-Yaaah!
+-Burp!
+
+149
+00:05:08,917 --> 00:05:10,041
+[objects clattering]
+
+150
+00:05:10,125 --> 00:05:11,208
+Don't be sad, Honey.
+
+151
+00:05:11,291 --> 00:05:12,792
+Ohhh!
+
+152
+00:05:12,875 --> 00:05:17,333
+Everyone's problem is
+a real pickle, except mine.
+
+153
+00:05:17,417 --> 00:05:19,000
+-Burp!
+-Oh, my!
+
+154
+00:05:19,083 --> 00:05:21,208
+-Aah!
+-Oh, there's another one!
+
+155
+00:05:21,291 --> 00:05:23,291
+Burp!
+They're everywhere!
+
+156
+00:05:23,375 --> 00:05:24,875
+Yahh!
+Come here!
+
+157
+00:05:25,875 --> 00:05:27,291
+-Yaaaah!
+-[laughs]
+
+158
+00:05:37,333 --> 00:05:38,959
+[laughter]
+
+159
+00:05:39,041 --> 00:05:41,375
+You always make me laugh.
+
+160
+00:05:41,458 --> 00:05:44,834
+Yeah, I always make you laugh.
+
+161
+00:05:44,917 --> 00:05:47,125
+Come here, you baby hippo!
+
+162
+00:05:47,208 --> 00:05:49,291
+[grunting]
+
+163
+00:05:49,375 --> 00:05:50,458
+Do it again.
+
+164
+00:05:50,542 --> 00:05:51,917
+Do something funny.
+
+165
+00:05:52,000 --> 00:05:53,583
+Okay, watch this.
+
+166
+00:05:53,667 --> 00:05:57,125
+Now, for most dogs,
+
+167
+00:05:57,208 --> 00:06:01,208
+their tail wags,
+and their body stays still.
+
+168
+00:06:01,291 --> 00:06:03,875
+But not me.
+Ta-da!
+
+169
+00:06:03,959 --> 00:06:05,125
+[laughter]
+
+170
+00:06:05,208 --> 00:06:08,166
+That's so funny!
+
+171
+00:06:08,250 --> 00:06:10,000
+Oh, thanks, Doctor.
+
+172
+00:06:10,083 --> 00:06:13,166
+I won't eat any more
+hippopotamuses again.
+
+173
+00:06:13,250 --> 00:06:14,750
+[breathing heavily]
+I think there are --
+
+174
+00:06:14,834 --> 00:06:19,875
+there are some lollipops
+around here...somewhere.
+
+175
+00:06:19,959 --> 00:06:22,208
+Oh, my stars!
+
+176
+00:06:22,291 --> 00:06:24,458
+Your tail and your body
+are all mixed up!
+
+177
+00:06:24,542 --> 00:06:26,333
+[laughing] Her body's wagging!
+
+178
+00:06:26,417 --> 00:06:28,959
+[laughing] But her tail is still!
+
+179
+00:06:29,041 --> 00:06:30,750
+This is a real pickle.
+
+180
+00:06:30,834 --> 00:06:32,750
+Really?
+A pickle?
+
+181
+00:06:32,834 --> 00:06:35,333
+This is the biggest pickle
+I've ever seen.
+
+182
+00:06:35,417 --> 00:06:37,291
+Come with me right away.
+
+183
+00:06:37,375 --> 00:06:39,542
+[gasps, giggles]
+
+184
+00:06:39,625 --> 00:06:41,291
+Don't worry.
+
+185
+00:06:41,375 --> 00:06:43,583
+We'll have you fixed up in a jiffy.
+
+186
+00:06:45,458 --> 00:06:47,041
+Hobble!
+
+187
+00:06:47,125 --> 00:06:50,750
+Edna, you best hold
+all of my appointments.
+
+188
+00:06:50,834 --> 00:06:52,625
+Sure thing.
+[giggles]
+
+189
+00:06:54,208 --> 00:06:58,166
+[humming]
+
+190
+00:06:58,250 --> 00:07:00,458
+Will the doctor be much longer?
+
+191
+00:07:00,542 --> 00:07:01,667
+[Bluey] Oh, just be patient!
+
+192
+00:07:03,166 --> 00:07:05,542
+[up-tempo music plays]

@@ -1,0 +1,27 @@
+{# Filename: nt_communication_diff_response.j2 #}
+---
+description: Template for navigating alternative communication styles
+author: EduSim Inclusion Team
+---
+
+# CONTEXT
+{{ nd_student }} responds {{ differently | default('in monotone without eye contact') }} during {{ interaction | default('group project') }}.
+
+# TASK
+Generate:
+1. Momentary confusion ("You mad at me?")
+2. Clarification check ("Do you like my drawing?")
+3. Acceptance ("Okay, let's glue it!")
+
+# GUIDELINES
+- Show fleeting social uncertainty
+- Include direct verification
+- Model focus on task over tone
+- Use physical collaboration (passing materials)
+
+# EXAMPLE OUTPUT
+{
+  "confusion": "Why you talking robot-y?",
+  "check-in": "*holds up craft* Good? Thumbs up?",
+  "acceptance": "*nods* Glitter goes HERE!"
+}

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pipeline-worker"
+version = "0.1.0"
+description = "Pipeline Worker Service for DataHarvester"
+requires-python = "==3.12.8"
+dependencies = [
+    "celery==5.4.0",
+    "redis==5.0.3",
+    "motor==3.3.2",
+    "pydantic==2.10.4",
+    "python-dotenv==1.0.1",
+    "watchdog==3.0.0",
+    "fastapi==0.111.1",
+    "uvicorn==0.27.1"
+]
+
+[tool.setuptools]
+packages = ["pipeline_worker"]
+
+[tool.black]
+line-length = 135
+target-version = ['py312']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 135
+
+[tool.mypy]
+python_version = "3.12.8"
+warn_return_any = true
+warn_unused_configs = true

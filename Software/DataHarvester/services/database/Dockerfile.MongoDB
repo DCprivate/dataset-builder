@@ -1,0 +1,40 @@
+# Software/DataHarvester/services/database/Dockerfile.MongoDB
+
+FROM mongo:latest
+
+# Labels for maintainability
+LABEL maintainer="Jay-Alexander Elliot <11063158@uvu.edu>"
+LABEL description="MongoDB instance for DataHarvester project management"
+LABEL version="1.0"
+
+# Environment variables
+ENV MONGO_INITDB_DATABASE=dataharvester \
+    GLIBC_TUNABLES=glibc.pthread.rseq=0 \
+    MONGODB_DISABLE_TRANSPARENT_HUGEPAGES=true \
+    MONGODB_ENABLE_NUMA=false \
+    MONGO_MAX_POOL_SIZE=50 \
+    MONGO_MIN_POOL_SIZE=10 \
+    MONGO_MAX_IDLE_TIME_MS=10000
+
+# Create directory for custom scripts
+RUN mkdir -p /docker-entrypoint-initdb.d
+
+# Copy initialization scripts
+COPY ./init-mongo.js /docker-entrypoint-initdb.d/
+
+# Create necessary directories and set permissions
+RUN mkdir -p /data/db /data/configdb \
+    && chown -R mongodb:mongodb /data/db /data/configdb
+
+# Custom MongoDB configuration
+COPY mongod.conf /etc/mongod.conf
+
+# Expose MongoDB port
+EXPOSE 27017
+
+# Set up healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=5 \
+    CMD mongosh --eval "db.adminCommand('ping')" || exit 1
+
+# Command to run MongoDB with optimized settings
+CMD ["mongod", "--config", "/etc/mongod.conf", "--bind_ip_all", "--wiredTigerCacheSizeGB", "1"] 

@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dataharvester-api"
+version = "0.1.0"
+description = "API Service for DataHarvester"
+requires-python = "==3.12.8"
+dependencies = [
+    "fastapi==0.111.1",
+    "uvicorn==0.27.1",
+    "pydantic==2.10.4",
+    "motor==3.3.2",
+    "python-dotenv==1.0.1"
+]
+
+[tool.black]
+line-length = 135
+target-version = ['py312']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 135 

@@ -1,0 +1,27 @@
+{# Filename: nt_movement_diff_response.j2 #}
+---
+description: Template for reacting to stimming/atypical movement
+author: EduSim Inclusion Team
+---
+
+# CONTEXT
+{{ nd_student }} is {{ movement | default('flapping hands while reading') }}.
+
+# TASK
+Create 3 responses:
+1. Imitation ("Look, I can flap too!")
+2. Question ("Does that feel nice?")
+3. Normalization ("I wiggle when excited!")
+
+# GUIDELINES
+- Include mirroring then differentiation
+- Show natural curiosity without judgment
+- Link to own experiences
+- Maintain activity focus
+
+# EXAMPLE OUTPUT
+{
+  "imitation": "*flaps arms* I'm a butterfly!",
+  "inquiry": "You do it when happy?",
+  "connection": "I spin when I'm super glad!"
+}

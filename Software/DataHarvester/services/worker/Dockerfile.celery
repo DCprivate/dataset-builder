@@ -1,0 +1,40 @@
+# Software/DataHarvester/services/worker/Dockerfile.celery
+
+FROM python:3.12.8-slim-bookworm
+
+# Add labels for maintainability
+LABEL maintainer="Jay-Alexander Elliot <11063158@uvu.edu>"
+LABEL description="Celery worker for DataHarvester"
+LABEL version="1.0"
+
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    gcc \
+    python3-dev \
+    libpq-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
+WORKDIR /app
+
+# Install shared package first
+COPY services/shared /shared
+RUN pip install -e /shared
+
+# Install worker package
+COPY services/worker .
+RUN pip install -e .
+
+# Create celery user
+RUN groupadd -r celery && useradd -r -g celery celery \
+    && chown -R celery:celery /app /shared
+
+USER celery
+
+ENV PYTHONPATH=/app:/shared
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+CMD ["celery", "-A", "pipeline_worker.celery_config:celery_app", "worker", "--loglevel=info"]

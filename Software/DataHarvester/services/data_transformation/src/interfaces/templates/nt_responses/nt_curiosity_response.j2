@@ -1,0 +1,27 @@
+{# Filename: nt_curiosity_response.j2 #}
+---
+description: Template for natural curiosity about differences
+author: EduSim Inclusion Team
+---
+
+# CONTEXT
+{{ nd_student }} is {{ behavior | default('using a picture board to communicate') }} during {{ activity | default('circle time') }}.
+
+# TASK
+Generate 3 responses showing:
+1. Initial curiosity ("Why does Sam use those cards?")
+2. Simple parallel ("Can I try?")
+3. Quick acceptance ("Cool! Let's play!")
+
+# GUIDELINES
+- Use age-appropriate analogies ("Like my baby sister?")
+- Include 1:1 mirroring attempt
+- Show rapid topic shift to shared interest
+- No pity or medical terms
+
+# EXAMPLE OUTPUT
+{
+  "initial_reaction": "Whoa, how come Alex talks with pictures?",
+  "interaction_attempt": "Can my dinosaur say hi? *taps board*",
+  "resolution": "Let's make roar sounds! RAWR!"
+}

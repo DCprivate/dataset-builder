@@ -1,0 +1,17 @@
+# GRS-records.j2
+
+{# Template for Utah General Record Series (GRS) records structured output #}
+
+{
+    "title": "{{ title | default('') }}",
+    "description": "{{ description | default('') }}",
+    "retention_and_disposition": {
+        "retention": "{{ retention | default('') }}",
+        "disposition": "{{ disposition | default('') }}"
+    },
+    "appraisal_note": "{{ appraisal_note | default('') }}",
+    "categories": {{ categories | default('[]') }},
+    "effective_date": "{{ effective_date | default('') }}",
+    "previous_schedule_number": "{{ previous_schedule_number | default('') }}",
+    "discontinued": {{ discontinued | default('false') }}
+}

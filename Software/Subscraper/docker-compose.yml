@@ -1,0 +1,43 @@
+services:
+  main:
+    build:
+      context: .
+    volumes:
+      - type: bind
+        source: ./downloads
+        target: /app/downloads
+        bind:
+          create_host_path: true
+      - type: bind
+        source: ./process
+        target: /app/process
+        bind:
+          create_host_path: true
+      - type: bind
+        source: ./logs
+        target: /app/logs
+        bind:
+          create_host_path: true
+      - ./.env:/app/.env:ro
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
+    environment:
+      - TZ=UTC
+      - LOG_LEVEL=INFO
+      - HOME=/app/tmp
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    init: true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('https://api.opensubtitles.com/api/v1/infos/languages')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3 

@@ -1,0 +1,27 @@
+{# Filename: nt_overstimulation_response.j2 #}
+---
+description: Template for reacting to sensory meltdowns
+author: EduSim Inclusion Team
+---
+
+# CONTEXT
+{{ nd_student }} is {{ reaction | default('covering ears and crying') }} during {{ trigger | default('fire drill practice') }}.
+
+# TASK
+Generate responses demonstrating:
+1. Confusion ("Why's Emma sad?")
+2. Peer comfort attempt ("Want my stuffie?")
+3. Teacher-guided support ("Ms. D says quiet helps")
+
+# GUIDELINES
+- Show instinctual empathy
+- Include concrete help offers
+- Model self-regulation ("I get scared too sometimes")
+- Avoid fear or stigma
+
+# EXAMPLE OUTPUT
+{
+  "observation": "*whispers* Why is Liam under the desk?",
+  "comfort_attempt": "Here, my fidget toy buzzes... feel?",
+  "co-regulation": "Wanna breathe big like balloons together?"
+}

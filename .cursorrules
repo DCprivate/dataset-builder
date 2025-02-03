@@ -1,0 +1,348 @@
+# .cursorrules
+# This is a rule set for the project. It is used to guide the development of the project,
+# incorporating AWS, cloud tools, Python, ML, web scraping, and data processing pipelines,
+# following best practices for software engineering.
+
+# ------------------------------------------------------------------------------
+# Author
+# ------------------------------------------------------------------------------
+author:
+  name: "Jay-Alexander Elliot"
+  email: "11063158@uvu.edu"
+
+# ------------------------------------------------------------------------------
+# Project/Architecture Requirements
+# ------------------------------------------------------------------------------
+name: ML Model Fine-tuning Data Pipeline
+architecture_style:
+  primary: Pipeline Architecture
+  python_version: "3.12.8"  # STRICT: Project requires exactly Python 3.12.8 (December 2024 release)
+  python_docker_image: "python:3.12.8-slim-bookworm"  # STRICT: All Python containers must use this exact image
+  patterns:
+    - Pipeline Architecture (DAG-based)
+    - Factory Pattern
+    - Strategy Pattern
+    - Repository Pattern
+    - Microservices Architecture
+    - Domain-Driven Design
+
+scale_requirements:
+  data_volume: Scalable
+  processing_capacity: Elastic
+  storage_requirements: Dynamic
+
+cloud_integration:
+  # This system is cloud-agnostic but defaults to AWS container deployments if needed.
+  provider: AWS
+  frameworks:
+    - AWS Well-Architected Framework
+    - Amazon SageMaker for ML model training/deployment
+    - AWS S3 for data storage and retrieval
+    - AWS Batch or Step Functions for pipeline orchestration
+    - AWS Glue for data transformations
+  infrastructure_as_code:
+    - Terraform
+    - Maintain environment parity across Dev and Prod
+
+# ------------------------------------------------------------------------------
+# Core Architectural Principles
+# ------------------------------------------------------------------------------
+architectural_principles:
+  separation_of_concerns:
+    - Data collection layer (web scraping, YouTube transcription)
+    - Data processing layer (cleaning, transformation)
+    - Training data preparation layer
+    - Model training layer
+    - Infrastructure management layer
+
+  pipeline_driven:
+    data_flow:
+      - Raw data collection
+      - Data cleaning and validation
+      - Dataset preparation
+      - Model training
+      - Performance evaluation
+    implementation:
+      - Parallel processing where possible
+      - Checkpointing
+      - Data versioning
+      - Pipeline monitoring
+
+# ------------------------------------------------------------------------------
+# Design Patterns
+# ------------------------------------------------------------------------------
+design_patterns:
+  factory:
+    purpose: "Centralize creation of scrapers and processors"
+    usage:
+      - Scraper instantiation
+      - Dataset processor creation
+      - Pipeline component creation
+    requirements:
+      - Consistent error handling
+      - Resource management
+      - Configuration validation
+
+  strategy:
+    purpose: "Switch processing algorithms dynamically"
+    usage:
+      - Data cleaning strategies
+      - Text processing methods
+      - Dataset splitting approaches
+      - Model training configurations
+    requirements:
+      - Performance monitoring
+      - Error handling
+      - Result validation
+
+  adapter:
+    purpose: "Standardize different data sources"
+    usage:
+      - Web scraping adapters
+      - Data format conversion
+      - Model input preparation
+    requirements:
+      - Data validation
+      - Error handling
+      - Format consistency
+
+# ------------------------------------------------------------------------------
+# Core Services
+# ------------------------------------------------------------------------------
+services:
+  web_scraper:
+    language: Python
+    features:
+      - Multi-threaded scraping
+      - Rate limiting
+      - Data validation
+      - Error recovery
+    best_practices:
+      - Use Scrapy/BeautifulSoup
+      - Implement proper delays
+      - Handle site policies
+      - Maintain scraping logs
+    expansions:
+      - Additional platforms: Reddit, Quora, forums, Stack Exchange, hackster.io, Twitter, news sites, government websites
+      - Maintain a pluggable architecture (new scraper modules can be dropped in with minimal coupling)
+
+  data_pipeline:
+    language: Python
+    responsibilities:
+      - Data cleaning
+      - Feature extraction
+      - Dataset creation
+      - Data versioning
+    best_practices:
+      - Use pandas/numpy for processing
+      - Implement data validation
+      - Maintain processing logs
+      - Enable parallel processing
+
+  model_training:
+    language: Python
+    features:
+      - SageMaker notebook integration
+      - Model fine-tuning
+      - Performance evaluation
+      - Experiment tracking
+    best_practices:
+      - Use SageMaker built-in algorithms
+      - Track experiments with MLflow
+      - Version control models
+      - Monitor training metrics
+    inference_options:
+      - deepseek v3
+      - openrouter
+      - Focus on cost efficiency and easy integration
+
+# ------------------------------------------------------------------------------
+# DataHarvester: YouTube Subtitle Service
+# ------------------------------------------------------------------------------
+youtube_subtitle_service:
+  language: Python
+  responsibilities:
+    - Harvesting and transcribing YouTube video subtitles
+    - Cleaning and normalizing textual data
+    - Storing transcripts as JSON objects in MongoDB
+    - Logging and handling errors
+  best_practices:
+    - Use pytube or an official YouTube API approach for retrieval
+    - Validate URLs, channels, and playlist IDs
+    - Store raw subtitles in `/data/raw` and cleaned outputs in `/data/processed`
+    - Write thorough logs in `/logs/`
+    - Maintain a domain-driven directory structure (e.g., `src/services/subtitle/`)
+
+# ------------------------------------------------------------------------------
+# Infrastructure Management
+# ------------------------------------------------------------------------------
+infrastructure:
+  terraform:
+    components:
+      - S3 buckets for data storage
+      - SageMaker notebook instances
+      - IAM roles and policies
+      - VPC configuration
+    best_practices:
+      - Use modules for reusability
+      - Implement state management
+      - Follow security best practices
+      - Enable proper logging
+
+# ------------------------------------------------------------------------------
+# Development Guidelines
+# ------------------------------------------------------------------------------
+guidelines:
+  code_quality:
+    - Write comprehensive tests
+    - Document pipeline steps
+    - Include error handling
+    - Add logging
+    - Follow PEP 8
+    - Maintain consistent code reviews
+    - Use pyproject.toml for package configuration (PEP 517/518)
+
+  review_checklist:
+    - Data validation
+    - Error handling
+    - Scalability considerations
+    - Resource cleanup
+    - Documentation
+    - AWS best practices
+    - Verify pyproject.toml configuration
+    - Check dependency specifications
+
+  cicd:
+    - Implement automated testing
+    - Use infrastructure-as-code
+    - Enable automated deployments
+    - Monitor resource usage
+
+# ------------------------------------------------------------------------------
+# Cursor AI Requirements
+# ------------------------------------------------------------------------------
+cursor_ai:
+  code_generation:
+    - Provide complete code implementations without omission or laziness.
+    - Output all required modules, classes, and functions.
+    - Supply relevant docstrings and comments for clarity.
+    - Proactively include error handling, tests, and logging.
+
+  behavior:
+    - Never skip generating code unless explicitly instructed to do so.
+    - Do not defer code generation tasks to the user.
+    - Actively verify that provided code meets all stated requirements.
+    - Adhere to best practices for the specified frameworks and tools.
+    - Check project files for general flow and structure.
+    - Provide clear and concise directions with code snippets in precise order; do not give examples.
+    - When finding inefficiencies, directly provide optimizations and code changes rather than summaries (unless specifically asked for a report).
+    - Always consult official documentation first, understand the libraries/frameworks, and avoid guesswork.
+
+  # ----------------- NEW MINOR ADDITION -----------------
+  docker_compose_rules:
+    - "Under no circumstances should a 'version' attribute be added to docker-compose files."
+    - "If an existing 'version' field is found, remove it or omit it to comply with Compose v2 formatting."
+
+# ------------------------------------------------------------------------------
+# DO NOT
+# ------------------------------------------------------------------------------
+prohibited:
+  - Store credentials in code
+  - Skip error handling
+  - Ignore rate limits
+  - Leave resources running unnecessarily
+  - Skip data validation
+  - Add features without immediate use
+  - Create unnecessary abstractions
+  - Mix multiple responsibilities
+  - Implement future requirements
+  - Optimize prematurely
+  - Change python version from 3.12
+  - Don't add version attribute in docker-compose files
+  - Use setup.py or requirements.txt for primary dependency management
+  - Mix different dependency management approaches
+
+# ------------------------------------------------------------------------------
+# Additional Requirements
+# ------------------------------------------------------------------------------
+requirements:
+  - Make minimum necessary changes
+  - Document data processing steps
+  - Maintain data versioning
+  - Monitor resource usage
+  - Follow AWS best practices
+  - Review costs regularly
+  - **All code files must have a single-line comment at the very top indicating their path from the project root. For example:**
+    - `# src/infrastructure/error_handling/exceptions/base.py`
+  - **When building the YouTube transcription microservice:**
+    - Must be cloud-agnostic but optionally deployable on AWS ECS.
+    - Must store subtitle data in MongoDB as JSON.
+    - Must keep raw and cleaned data in `data/` folders.
+    - Must log errors and events in `logs/`.
+
+# ------------------------------------------------------------------------------
+# Additional Data Management Guidelines
+# ------------------------------------------------------------------------------
+data_management:
+  recommended_strategies:
+    - "Maintain separate collections/databases by project or domain."
+    - "Use a single collection with a 'status' or 'phase' field to track progress."
+    - "Partition data by time or version for easier archiving and retrieval."
+    - "Leverage a data-lake approach if volumes are large (S3 + metadata in MongoDB)."
+    - "Tag documents with metadata for easier indexing and filtering."
+  pii_handling:
+    toggleable_removal: "A dedicated step should enable or disable personal data redaction."
+    best_practices:
+      - "Use explicit detection and sanitization pipelines for PII."
+      - "Keep transformation logs for audit and compliance."
+      - "Regularly review compliance with privacy regulations (GDPR, HIPAA, etc.)."
+
+# ------------------------------------------------------------------------------
+# Python Packaging Guidelines
+# ------------------------------------------------------------------------------
+python_packaging:
+  primary_config: "pyproject.toml"  # STRICT: All Python services must use pyproject.toml
+  requirements:
+    - Must include build-system section
+    - Must specify exact Python version (3.12.8)
+    - Must include tool configurations (black, isort, mypy)
+    - Must list all dependencies with version constraints
+  structure:
+    build-system:
+      - requires = ["setuptools>=45", "wheel"]
+      - build-backend = "setuptools.build_meta"
+    project:
+      - name, version, description required
+      - requires-python must be "==3.12.8"
+      - dependencies with version constraints
+    tool:
+      - black configuration
+      - isort configuration
+      - mypy configuration
+      - pytest configuration
+
+  example:
+    ```toml
+    [build-system]
+    requires = ["setuptools>=45", "wheel"]
+    build-backend = "setuptools.build_meta"
+    
+    [project]
+    name = "service-name"
+    version = "0.1.0"
+    description = "Service description"
+    requires-python = "==3.12.8"
+    dependencies = [
+        "package1>=1.0.0",
+        "package2==2.1.0"
+    ]
+    
+    [tool.black]
+    line-length = 135
+    target-version = ['py312']
+    
+    [tool.isort]
+    profile = "black"
+    multi_line_output = 3
+    line_length = 135
+    ```

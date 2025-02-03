@@ -1,0 +1,35 @@
+FROM caddy:2.7-alpine
+
+# Add labels for maintainability
+LABEL maintainer="Jay-Alexander Elliot <11063158@uvu.edu>"
+LABEL description="Caddy reverse proxy for DataHarvester API"
+LABEL version="1.0"
+
+# Create required directories
+RUN mkdir -p /var/log/caddy /config /data
+
+# Set up default environment variables
+ENV CADDY_LOG_FILE_NAME=access
+
+# Copy custom Caddyfile and any other config files
+COPY Caddyfile /etc/caddy/Caddyfile
+
+# Create caddy user and group, then set proper permissions
+RUN addgroup -S caddy && \
+    adduser -S -G caddy caddy && \
+    chown -R caddy:caddy /var/log/caddy /config /data /etc/caddy
+
+# Set up volumes for Caddy data and config
+VOLUME ["/data", "/config", "/var/log/caddy"]
+
+# Expose ports (HTTP, HTTPS, and metrics/admin)
+EXPOSE 80 443 2019
+
+# Switch to caddy user
+USER caddy
+
+# Use Caddy's default entrypoint
+ENTRYPOINT ["caddy"]
+
+# Default command to run Caddy
+CMD ["run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
