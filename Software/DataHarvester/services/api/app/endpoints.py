@@ -7,8 +7,9 @@ from motor.motor_asyncio import AsyncIOMotorDatabase
 from .dependencies import get_db
 from .schemas import EventSchema
 
-from services.data_transformation.src.infrastructure.tasks.task import TaskContext
-from services.data_transformation.src.domain.interfaces.base import Node
+# Fix these imports to use dataharvester_shared
+from dataharvester_shared.schemas import TaskContext
+from dataharvester_shared.interfaces import Node
 
 """
 Router Module

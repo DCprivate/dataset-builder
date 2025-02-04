@@ -15,7 +15,8 @@ dependencies = [
     "python-dotenv==1.0.1",
     "watchdog==3.0.0",
     "fastapi==0.111.1",
-    "uvicorn==0.27.1"
+    "uvicorn==0.27.1",
+    "dataharvester-shared"
 ]
 
 [tool.setuptools]

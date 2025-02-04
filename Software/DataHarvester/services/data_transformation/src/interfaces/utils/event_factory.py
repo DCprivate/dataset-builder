@@ -4,7 +4,7 @@ import json
 import logging
 from pathlib import Path
 from typing import Dict, Any, List
-from api.app.schemas import EventSchema
+from dataharvester_shared.schemas import EventSchema
 
 """
 Event Factory Module

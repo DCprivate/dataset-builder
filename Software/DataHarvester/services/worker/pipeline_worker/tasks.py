@@ -1,8 +1,8 @@
 # Software/DataHarvester/services/worker/pipeline_worker/tasks.py
 
-from shared.config.settings import get_settings
-from shared.mongodb.repository import MongoRepository
-from shared.schemas import EventSchema
+from dataharvester_shared.config.settings import get_settings
+from dataharvester_shared.mongodb.repository import MongoRepository
+from dataharvester_shared.schemas import EventSchema
 from .celery_config import celery_app
 from .registry import PipelineRegistry
 from datetime import datetime, timezone

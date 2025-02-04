@@ -1,10 +1,9 @@
 # Software/DataHarvester/services/data_transformation/infrastructure/persistence/mongodb/repository.py
 
-from typing import List, Optional
-from datetime import datetime
-from shared.mongodb.repository import MongoRepository
-from shared.mongodb.models import CleanedDocument, ProcessedDocument
-from domain.interfaces.repository import ITransformationRepository
+from typing import List
+from dataharvester_shared.mongodb.repository import MongoRepository
+from dataharvester_shared.mongodb.models import CleanedDocument, ProcessedDocument
+from ....domain.interfaces.repository import ITransformationRepository
 
 class DataTransformationRepository(ITransformationRepository):
     def __init__(self, mongo_uri: str, database: str, project_name: str):

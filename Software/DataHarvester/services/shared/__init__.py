@@ -6,8 +6,8 @@ Provides:
 - Shared schemas
 """
 
-from src.mongodb.models import BaseDocument, CleanedDocument, ProcessedDocument, Document
-from src.config.settings import get_settings
+from dataharvester_shared.mongodb.models import BaseDocument, CleanedDocument, ProcessedDocument, Document
+from dataharvester_shared.config.settings import get_settings
 
 __all__ = [
     'BaseDocument',

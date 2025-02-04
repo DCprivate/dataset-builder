@@ -171,7 +171,7 @@ class MongoDBClient:
         """Cleanup database connections."""
         try:
             if hasattr(self, 'client'):
-                await self.client.close()
+                self.client.close()
                 logger.info("MongoDB connection closed successfully")
         except Exception as e:
             logger.error(f"Error during database cleanup: {str(e)}")

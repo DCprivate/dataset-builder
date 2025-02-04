@@ -1,9 +1,10 @@
-jay@DESKTOP-N3AJ5U8:~/Github/CS-339R/Software/DataHarvester$ tree
+# /Software/DataHarvester/directory_tree.md
+
+(.venv) (base) jay@MSI:~/GitHub/dataset-builder/Software/DataHarvester$ tree
 .
 ├── README.md
 ├── compose
 │   └── docker-compose.yml
-├── config
 ├── data
 ├── directory_tree.md
 ├── docs
@@ -13,9 +14,6 @@ jay@DESKTOP-N3AJ5U8:~/Github/CS-339R/Software/DataHarvester$ tree
 ├── examples
 │   └── output-example.json
 ├── logs
-│   ├── youtube_scraper_20250130_041551.log
-│   ├── youtube_scraper_20250130_041553.log
-│   └── youtube_scraper_20250130_041555.log
 ├── main.py
 ├── pyproject.toml
 └── services
@@ -27,6 +25,12 @@ jay@DESKTOP-N3AJ5U8:~/Github/CS-339R/Software/DataHarvester$ tree
     │   │   ├── main.py
     │   │   ├── schemas.py
     │   │   └── start.sh
+    │   ├── dataharvester_api.egg-info
+    │   │   ├── PKG-INFO
+    │   │   ├── SOURCES.txt
+    │   │   ├── dependency_links.txt
+    │   │   ├── requires.txt
+    │   │   └── top_level.txt
     │   ├── directory_tree.md
     │   └── pyproject.toml
     ├── caddy
@@ -48,6 +52,12 @@ jay@DESKTOP-N3AJ5U8:~/Github/CS-339R/Software/DataHarvester$ tree
     │   │           ├── __init__.py
     │   │           ├── transcript_processor.py
     │   │           └── transcript_service.py
+    │   ├── data_ingestion.egg-info
+    │   │   ├── PKG-INFO
+    │   │   ├── SOURCES.txt
+    │   │   ├── dependency_links.txt
+    │   │   ├── requires.txt
+    │   │   └── top_level.txt
     │   ├── directory_tree.md
     │   ├── domain
     │   │   ├── __init__.py
@@ -120,6 +130,12 @@ jay@DESKTOP-N3AJ5U8:~/Github/CS-339R/Software/DataHarvester$ tree
     │       │       ├── llm_factory.py
     │       │       ├── prompt_loader.py
     │       │       └── validate.py
+    │       ├── data_transformation.egg-info
+    │       │   ├── PKG-INFO
+    │       │   ├── SOURCES.txt
+    │       │   ├── dependency_links.txt
+    │       │   ├── requires.txt
+    │       │   └── top_level.txt
     │       ├── domain
     │       │   ├── interfaces
     │       │   │   ├── __init__.py
@@ -190,14 +206,22 @@ jay@DESKTOP-N3AJ5U8:~/Github/CS-339R/Software/DataHarvester$ tree
     │   ├── pyproject.toml
     │   └── src
     │       ├── __init__.py
-    │       ├── config
-    │       │   ├── celery_config.py
-    │       │   └── settings.py
-    │       ├── mongodb
+    │       ├── dataharvester_shared
     │       │   ├── __init__.py
-    │       │   ├── models.py
-    │       │   └── repository.py
-    │       └── schemas.py
+    │       │   ├── config
+    │       │   │   ├── celery_config.py
+    │       │   │   └── settings.py
+    │       │   ├── mongodb
+    │       │   │   ├── __init__.py
+    │       │   │   ├── models.py
+    │       │   │   └── repository.py
+    │       │   └── schemas.py
+    │       └── dataharvester_shared.egg-info
+    │           ├── PKG-INFO
+    │           ├── SOURCES.txt
+    │           ├── dependency_links.txt
+    │           ├── requires.txt
+    │           └── top_level.txt
     └── worker
         ├── Dockerfile.celery
         ├── directory_tree.md
@@ -206,6 +230,13 @@ jay@DESKTOP-N3AJ5U8:~/Github/CS-339R/Software/DataHarvester$ tree
         │   ├── celery_config.py
         │   ├── registry.py
         │   └── tasks.py
+        ├── pipeline_worker.egg-info
+        │   ├── PKG-INFO
+        │   ├── SOURCES.txt
+        │   ├── dependency_links.txt
+        │   ├── requires.txt
+        │   └── top_level.txt
         └── pyproject.toml
 
-62 directories, 145 files
+67 directories, 168 files
+(.venv) (base) jay@MSI:~/GitHub/dataset-builder/Software/DataHarvester$ 

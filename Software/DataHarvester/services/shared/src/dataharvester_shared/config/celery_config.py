@@ -3,7 +3,7 @@
 import os
 from functools import lru_cache
 from celery import Celery
-from shared.config.settings import get_settings
+from dataharvester_shared.config.settings import get_settings
 
 settings = get_settings()
 

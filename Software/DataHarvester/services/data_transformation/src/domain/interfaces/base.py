@@ -1,8 +1,7 @@
 # Software/DataHarvester/services/data_transformation/domain/interfaces/base.py
 
 from abc import ABC, abstractmethod
-
-from infrastructure.tasks.task import TaskContext
+from dataharvester_shared.models.task import TaskContext
 
 """
 Base Node Module

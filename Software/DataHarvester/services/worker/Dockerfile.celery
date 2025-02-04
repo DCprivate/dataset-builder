@@ -21,7 +21,7 @@ WORKDIR /app
 
 # Install shared package first
 COPY services/shared /shared
-RUN pip install -e /shared
+RUN cd /shared && pip install -e .
 
 # Install worker package
 COPY services/worker .
@@ -33,7 +33,7 @@ RUN groupadd -r celery && useradd -r -g celery celery \
 
 USER celery
 
-ENV PYTHONPATH=/app:/shared
+ENV PYTHONPATH=/app:/shared/src
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 

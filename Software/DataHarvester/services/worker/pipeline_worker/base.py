@@ -5,12 +5,12 @@ from abc import ABC
 from contextlib import contextmanager
 from typing import Dict, Optional, ClassVar, Type
 
-from services.api.app.schemas import EventSchema
+from dataharvester_shared.models.task import TaskContext
+from dataharvester_shared.schemas import EventSchema
+from dataharvester_shared.interfaces.base import Node
+from dataharvester_shared.interfaces.schema import PipelineSchema
+from dataharvester_shared.services.validate import PipelineValidator
 from services.api.app.endpoints import BaseRouter
-from services.data_transformation.src.domain.interfaces.base import Node
-from services.data_transformation.src.domain.interfaces.schema import PipelineSchema
-from services.data_transformation.src.infrastructure.tasks.task import TaskContext
-from services.data_transformation.src.application.services.validate import PipelineValidator
 
 """
 Pipeline Orchestration Module

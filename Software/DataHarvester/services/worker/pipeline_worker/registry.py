@@ -2,7 +2,7 @@
 
 import logging
 from typing import Dict, Type
-from shared.schemas import EventSchema
+from dataharvester_shared.schemas import EventSchema
 from .base import Pipeline
 
 

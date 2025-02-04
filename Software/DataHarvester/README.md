@@ -1,175 +1,136 @@
-# YouTube Subtitle Data Harvester
+# DataHarvester
 
-A robust data pipeline for harvesting, processing, and storing YouTube video subtitles. Built with Python 3.12.8 and MongoDB.
+A robust data pipeline for processing and transforming data. Built with Python 3.12.8, MongoDB, and Redis.
 
-## Table of Contents
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Running the Application](#running-the-application)
-- [Directory Structure](#directory-structure)
-- [Monitoring and Logs](#monitoring-and-logs)
-- [Troubleshooting](#troubleshooting)
-
-## Prerequisites
-
-- Docker Engine (20.10.0 or higher)
-- Docker Compose (2.0.0 or higher)
-- At least 4GB of free RAM
-- At least 10GB of free disk space
-
-## Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd Software/DataHarvester
-```
-
-2. Build the Docker images:
-```bash
-docker-compose -f docker/docker-compose.yml build
-```
-
-## Configuration
-
-Before running the application, configure the following files in the `config` directory:
-
-1. `urls.yaml`: Add YouTube video URLs, playlists, or channels to process
-```yaml
-urls:
-  videos:
-    - "https://www.youtube.com/watch?v=VIDEO_ID"
-  playlists:
-    - "https://www.youtube.com/playlist?list=PLAYLIST_ID"
-  channels:
-    - "https://www.youtube.com/channel/CHANNEL_ID"
-```
-
-2. `cleaning.yaml`: Configure text cleaning settings (default settings should work for most cases)
-
-3. `database.yaml`: Configure MongoDB settings (default settings work with provided docker-compose)
-
-## Running the Application
-
-1. Start the services:
-```bash
-docker-compose -f docker/docker-compose.yml up -d
-```
-
-2. Monitor the logs:
-```bash
-docker-compose -f docker/docker-compose.yml logs -f scraper
-```
-
-3. Stop the services:
-```bash
-docker-compose -f docker/docker-compose.yml down
-```
-
-To remove all data and start fresh:
-```bash
-docker-compose -f docker/docker-compose.yml down -v
-```
-
-## Directory Structure
-
+## Project Structure
 ```
 DataHarvester/
-├── config/                 # Configuration files
-├── data/                  # Data storage
-│   ├── raw/              # Raw subtitle data
-│   └── processed/        # Processed subtitle data
-├── docker/               # Docker configuration
+├── services/
+│   ├── api/              # FastAPI service
+│   ├── caddy/            # Reverse proxy
+│   ├── data_ingestion/   # Data collection service
+│   ├── data_transformation/  # Data processing service
+│   ├── database/         # MongoDB configuration
+│   ├── shared/           # Shared utilities
+│   └── worker/           # Celery worker service
+├── compose/              # Docker compose files
+├── data/                 # Data storage
 ├── docs/                 # Documentation
 ├── logs/                 # Application logs
-└── src/                  # Source code
-    ├── core/            # Core functionality
-    ├── infrastructure/  # Infrastructure components
-    ├── monitoring/      # Monitoring utilities
-    ├── services/        # Business logic services
-    └── validation/      # Validation components
+└── examples/             # Example outputs
 ```
+
+## Development Setup
+
+### Prerequisites
+- Python 3.12.8
+- pip 24.0 or higher
+- venv (usually comes with Python)
+- Docker and Docker Compose (for running services)
+
+### Initial Setup
+
+1. Create and activate virtual environment:
+```bash
+sudo apt install python3.12-venv
+
+/usr/bin/python3.12 -m venv .venv
+
+source .venv/bin/activate  # Linux/Mac
+# or
+.venv\Scripts\activate     # Windows
+```
+
+2. Install development packages:
+```bash
+# Install shared package in editable mode
+cd services/shared
+pip install -e .
+cd ..
+
+# Install worker package in editable mode
+cd worker
+pip install -e .
+cd ..
+
+# Repeat for other services as needed
+```
+
+### VS Code Configuration
+
+Create/update `.vscode/settings.json`:
+```json
+{
+    "python.analysis.extraPaths": [
+        "./services/shared/src"
+    ],
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python"
+}
+```
+
+### Service Dependencies
+
+Each service must be installed in order, as they depend on the shared package:
+
+1. Install shared utilities first:
+```bash
+cd services/shared
+pip install -e .
+cd ../..
+```
+
+2. Install service packages (in any order after shared):
+```bash
+# API Service
+cd services/api
+pip install -e .
+cd ../..
+
+# Worker Service
+cd services/worker
+pip install -e .
+cd ../..
+
+# Data Ingestion Service
+cd services/data_ingestion
+pip install -e .
+cd ../..
+
+# Data Transformation Service
+cd services/data_transformation
+pip install -e .
+cd ../..
+```
+
+Or use this one-liner to install all services:
+```bash
+for service in shared api worker data_ingestion data_transformation; do cd services/$service && pip install -e . && cd ../..; done
+```
+
+### Running Services
+
+Using Docker Compose:
+```bash
+cd compose
+docker-compose up --build
+```
+
+### Dependency Auditing
+
+To check for security vulnerabilities:
+```bash
+pip install pip-audit
+pip-audit
+```
+
+## Documentation
+
+See the `docs/` directory for additional documentation:
+- `docs/to-do.md` - Project tasks and roadmap
+- `docs/to-do-2.md` - Additional planned features
 
 ## Monitoring and Logs
 
-- Application logs: `logs/youtube_scraper_*.log`
-- Docker logs: `docker-compose -f docker/docker-compose.yml logs`
-- MongoDB data: Persisted in docker volume `mongodb_data`
-
-Health checks are automatically performed for:
-- MongoDB connection
-- NLTK data availability
-- spaCy model availability
-- Overall application health
-
-## Troubleshooting
-
-### Common Issues
-
-1. MongoDB Connection Failed
-```bash
-# Check MongoDB status
-docker-compose -f docker/docker-compose.yml ps mongo
-# Check MongoDB logs
-docker-compose -f docker/docker-compose.yml logs mongo
-```
-
-2. Missing NLTK Data
-```bash
-# Access the container
-docker-compose -f docker/docker-compose.yml exec scraper bash
-# Verify NLTK data
-python -c "import nltk; nltk.data.path"
-```
-
-3. Permission Issues
-```bash
-# Fix permissions on host
-sudo chown -R 1000:1000 logs/ data/
-```
-
-4. Container Won't Start
-```bash
-# Check container logs
-docker-compose -f docker/docker-compose.yml logs scraper
-# Verify health checks
-docker inspect <container_id> | grep Health -A 10
-```
-
-### Data Management
-
-To backup MongoDB data:
-```bash
-docker-compose -f docker/docker-compose.yml exec mongo mongodump --out /data/db/backup
-```
-
-To restore MongoDB data:
-```bash
-docker-compose -f docker/docker-compose.yml exec mongo mongorestore /data/db/backup
-```
-
-### Resource Usage
-
-Monitor container resource usage:
-```bash
-docker stats $(docker-compose -f docker/docker-compose.yml ps -q)
-```
-
-## Environment Variables
-
-The following environment variables can be modified in docker-compose.yml:
-
-- `MONGO_URI`: MongoDB connection URI
-- `MONGO_DB`: MongoDB database name
-- `LOG_LEVEL`: Logging level (INFO, DEBUG, WARNING, ERROR)
-- `PYTHONUNBUFFERED`: Python output buffering
-- `NLTK_DATA`: NLTK data directory
-- `SPACY_MODEL`: spaCy model name
-
-## Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Run tests (when implemented)
-4. Submit a pull request
+- Application logs are stored in the `logs/` directory
+- Each service maintains its own log files
+- MongoDB data is persisted in docker volumes

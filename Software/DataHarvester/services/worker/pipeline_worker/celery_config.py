@@ -1,7 +1,7 @@
 # Software/DataHarvester/services/worker/pipeline_worker/celery_config.py
 
 from celery import Celery
-from shared.config.settings import get_settings
+from dataharvester_shared.config.settings import get_settings
 
 settings = get_settings()
 
