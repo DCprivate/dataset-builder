@@ -157,6 +157,21 @@ services:
       - Focus on cost efficiency and easy integration
 
 # ------------------------------------------------------------------------------
+# Anti-Patterns to Avoid
+# ------------------------------------------------------------------------------
+anti_patterns:
+  - Avoid Shared Databases Between Microservices: Each service should manage its own data to prevent tight coupling.
+  - Prevent Distributed Monoliths: Services must be independently deployable without dependencies locking their execution order.
+  - Limit Chatty Services: Reduce excessive inter-service communication by using event-driven patterns or data aggregation.
+  - Avoid Anemic Domain Models: Business logic must be encapsulated within domain models, not procedural functions.
+  - Maintain Bounded Contexts: Clearly define service boundaries to prevent overlapping responsibilities and data structures.
+  - Avoid Over-Microservicing: Excessive decomposition increases complexity; consolidate related functionalities into single services when appropriate.
+  - Implement Automation & Monitoring: CI/CD, logging, tracing, and health checks must be in place to prevent manual errors.
+  - Prevent Premature Optimization: Optimize only when bottlenecks become evident through performance monitoring.
+  - Involve Domain Experts: Ensure software models align with real-world business logic by engaging stakeholders.
+  - Use an Anti-Corruption Layer for External Integrations: Avoid polluting internal models with external system logic.
+
+# ------------------------------------------------------------------------------
 # DataHarvester: YouTube Subtitle Service
 # ------------------------------------------------------------------------------
 youtube_subtitle_service:
@@ -346,3 +361,6 @@ python_packaging:
     multi_line_output = 3
     line_length = 135
     ```
+
+# ------------------------------------------------------------------------------
+# Ensure this document is actively enforced through reviews and automated checks.
