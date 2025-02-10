@@ -87,3 +87,134 @@ Here are the key anti-patterns I've identified in your codebase:
 4. Hardcoded API keys in `.env.example` (security risk)
 
 Would you like me to prioritize these or suggest refactoring paths for any specific area? The current architecture appears to be mid-transition to event-driven design but still contains monolithic elements.
+
+
+<think>
+Okay, let's tackle the user's question. They want to know the most critical things to address in their codebase as they continue working tomorrow. From the previous analysis, there are several anti-patterns, but I need to prioritize them based on impact and alignment with their refactoring goals.
+
+First, the shared database issue is a big one. Multiple services accessing the same MongoDB collections creates tight coupling, which is against microservices principles. This can lead to data inconsistency and makes scaling difficult. So, addressing this should be high priority.
+
+Next, the monolithic task runner using Celery. Having a single worker handle both ingestion and transformation violates the Single Responsibility Principle. It's better to split these into separate services to improve scalability and maintainability.
+
+Inconsistent error handling across services can cause confusion and make debugging harder. Standardizing errors would streamline the process and improve reliability.
+
+Configuration fragmentation is another critical issue. Multiple config managers and hardcoded paths can lead to environment-specific bugs and make the system harder to deploy. Centralizing configuration will reduce redundancy and errors.
+
+Tight coupling in components like the PipelineRegistry and VideoProcessor limits flexibility. Using interfaces and dependency injection would decouple these components, making the system more modular.
+
+Docker issues like duplicated setup and lack of a base image increase build times and potential inconsistencies. Creating a shared base image and optimizing Dockerfiles can resolve this.
+
+Security concerns with hardcoded API keys in .env files are a major risk. Immediate action is needed to secure sensitive information.
+
+Prioritizing these areas will set a solid foundation for further refactoring. I'll outline these critical fixes with actionable steps, ensuring each is addressed efficiently.
+</think>
+
+Here are the **5 most critical fixes** to prioritize for your refactoring efforts, ordered by immediate impact:
+
+1. **Decouple Shared Database Access** *(High Risk)*
+```python
+# services/data_transformation/src/infrastructure/mongodb/repository.py
+# Anti-pattern: Direct collection access
+# Before:
+self.mongo = self.db[f"{project_name}_raw"]
+
+# Fix: Introduce interface segregation
+class ITransformationRepository(ABC):
+    @abstractmethod
+    async def get_cleaned_documents(self, batch_size: int) -> List[dict]:
+        """Get documents from CLEANED collection"""
+        pass
+
+# Implement separate repositories per bounded context
+```
+
+2. **Split Monolithic Celery Worker** *(Architecture Risk)*
+```yaml
+# compose/docker-compose.yml
+# Before:
+services:
+  worker:
+    image: worker:latest
+    command: celery -A worker.celery_app worker -l info
+
+# Fix: Separate concerns
+services:
+  ingestion_worker:
+    image: ingestion_worker:latest
+    command: celery -A ingestion.app worker -Q ingestion -l info
+  transformation_worker:
+    image: transformation_worker:latest 
+    command: celery -A transformation.app worker -Q transformation -l info
+```
+
+3. **Standardize Error Handling** *(Maintainability Risk)*
+```python
+# Create shared error protocol
+# services/shared/src/error_handling.py
+from pydantic import BaseModel
+class ErrorPayload(BaseModel):
+    code: str
+    message: str
+    context: dict
+    severity: str  # DEBUG|INFO|WARNING|ERROR|CRITICAL
+
+def create_error_response(error: Exception) -> ErrorPayload:
+    """Normalize all error responses"""
+    if isinstance(error, BaseError):
+        return ErrorPayload(
+            code=error.error_code,
+            message=str(error),
+            context=error.details,
+            severity=error.severity.name
+        )
+    # Add other error type handling
+```
+
+4. **Secure Configuration Management** *(Security Risk)*
+```python
+# services/data_ingestion/infrastructure/config/config_manager.py
+# Before: Mixed config sources
+def __init__(self):
+    self.load_file_config()
+    self.load_env_vars()  # Random priority
+
+# Fix: Centralized config with precedence
+class ConfigManager:
+    def __init__(self):
+        self.config = DefaultConfig
+        self._load_hierarchy()
+        
+    def _load_hierarchy(self):
+        self._load_from_vault()  # Highest priority
+        self._load_env_vars()    # Second priority  
+        self._load_file_config() # Lowest priority
+```
+
+5. **Implement Event Schema Versioning** *(Data Consistency Risk)*
+```python
+# services/shared/src/events.py
+from pydantic import BaseModel
+class BaseEvent(BaseModel):
+    event_type: str
+    payload: dict
+    metadata: dict = {"schema_version": "1.0.0"}  # Critical for evolution
+
+class VideoIngestedEvent(BaseEvent):
+    event_type: "video_ingested"
+    payload: dict  # Strongly type this in actual implementation
+
+# Enforce in message producers/consumers
+```
+
+**Immediate Action Plan:**
+1. Start with the event schema definition (Critical for future changes)
+2. Split Celery workers next (Prevents deployment bottlenecks)
+3. Implement the error protocol (Makes debugging easier early)
+4. Do configuration security last (Requires Vault/SSM setup)
+
+**Quick Wins (1-2 hours):**
+- Remove hardcoded API keys from `.env.example`
+- Add `__all__` to empty `__init__.py` files
+- Delete dead code like unused `PipelineSchema`
+
+Would you like me to elaborate on any of these fixes or provide implementation details for a specific area?
