@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dataharvester-database"
+version = "0.1.0"
+description = "Database initialization and management for DataHarvester"
+requires-python = "==3.12.8"
+dependencies = [
+    "pymongo>=4.6.1",
+    "motor>=3.3.2",
+    "python-dotenv>=1.0.1"
+]
+
+[tool.black]
+line-length = 135
+target-version = ['py312']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 135
+
+[tool.mypy]
+python_version = "3.12.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
