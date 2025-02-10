@@ -2,8 +2,10 @@
 
 import logging
 from typing import Dict, Type
-from dataharvester_shared.schemas import EventSchema
+from .schemas import EventSchema as LocalEventSchema
 from .base import Pipeline
+from domain.schemas import EventSchema as DomainEventSchema
+from domain.infrastructure.mongodb.repository import DataTransformationRepository
 
 
 """
@@ -13,6 +15,12 @@ This module provides a registry system for managing different pipeline types
 and their mappings. It determines which pipeline to use based on event attributes,
 currently using email addresses as the routing mechanism.
 """
+
+
+class EventSchema(DomainEventSchema):
+    event_type: str
+    payload: dict
+    metadata: dict = {}
 
 
 class PipelineRegistry:
@@ -34,6 +42,13 @@ class PipelineRegistry:
     pipelines: Dict[str, Type[Pipeline]] = {
         # "support": CustomerSupportPipeline, # Register your pipeline here
     }
+
+    def __init__(self):
+        self.repo = DataTransformationRepository(
+            mongo_uri="mongodb://localhost:27017",
+            database="dataharvester",
+            project_name="pipeline_worker"
+        )
 
     @staticmethod
     def get_pipeline_type(event: EventSchema) -> str:

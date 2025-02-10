@@ -66,31 +66,29 @@ class TranscriptFetcher:
                     raise ScrapingError(
                         "Failed to get auto-translated transcript",
                         ErrorCode.SCRAPING_PARSE_ERROR,
-                        ErrorSeverity.ERROR,
+                        ErrorSeverity.ERROR, # type: ignore
                         details={"video_id": video_id},
                         original_error=e
                     )
 
-            raise NoTranscriptFound(video_id)
+            raise NoTranscriptFound(video_id=video_id, requested_language_codes=self.preferred_languages, transcript_data=transcript_list)
             
         except Exception as e:
             raise ScrapingError(
                 "Failed to extract transcript",
                 ErrorCode.SCRAPING_PARSE_ERROR,
-                ErrorSeverity.ERROR,
+                ErrorSeverity.ERROR, # type: ignore
                 details={"video_id": video_id},
                 original_error=e
             )
 
     @ErrorMiddleware.retry()
-    @handle_errors(context="Playlist Extraction")
+    @handle_errors(Exception, context="Playlist Extraction")
     def get_playlist_video_urls(self, playlist_url: str) -> List[str]:
         """Extract all video URLs from a playlist or channel."""
         try:
             playlist = Playlist(playlist_url)
-            # Force playlist to load
-            playlist._video_urls = []
-            urls = playlist.video_urls
+            urls = list(playlist.video_urls)  # Force playlist to load by converting iterator to list
             
             if not urls:
                 logger.warning(f"No videos found in playlist: {playlist_url}")
@@ -101,7 +99,7 @@ class TranscriptFetcher:
             raise ScrapingError(
                 "Failed to extract videos from playlist",
                 ErrorCode.SCRAPING_PARSE_ERROR,
-                ErrorSeverity.ERROR,
+                ErrorSeverity.ERROR, # type: ignore
                 details={"playlist_url": playlist_url},
                 original_error=e
             ) 

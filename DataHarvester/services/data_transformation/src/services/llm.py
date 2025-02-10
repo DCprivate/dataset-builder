@@ -2,8 +2,7 @@
 
 from abc import ABC, abstractmethod
 
-from infrastructure.tasks.task import TaskContext
-from domain.interfaces.base import Node
+from domain.interfaces.base import Node, TaskContext
 from pydantic import BaseModel
 
 """
@@ -33,7 +32,9 @@ class LLMNode(Node, ABC):
         required by your LLM implementation.
         """
 
-        pass
+        prompt: str
+        system_message: str
+        temperature: float = 0.7
 
     class ResponseModel(BaseModel):
         """Base model for LLM response data.
@@ -42,7 +43,9 @@ class LLMNode(Node, ABC):
         produced by your LLM implementation.
         """
 
-        pass
+        completion: str
+        tokens_used: int
+        success: bool
 
     @abstractmethod
     def create_completion(self, context: ContextModel) -> ResponseModel:

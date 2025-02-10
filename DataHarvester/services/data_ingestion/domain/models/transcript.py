@@ -1,40 +1,26 @@
 # Software/DataHarvester/services/data_ingestion/domain/models/transcript.py
 
-from typing import List, Dict, Any, Optional
-from datetime import datetime, timezone
-from dataclasses import dataclass
+from typing import List, Dict, Optional, Any
+from datetime import datetime
+from pydantic import BaseModel
 
-@dataclass
-class TranscriptSegment:
+class TranscriptSegment(BaseModel):
     """Model for individual transcript entries."""
-    text: List[str]
+    text: str
     start: float
     duration: float
 
-@dataclass
-class RawTranscript:
+class RawTranscript(BaseModel):
     """Model for raw transcript data from YouTube."""
     video_id: str
-    channel_id: Optional[str]
     segments: List[TranscriptSegment]
-    metadata: Dict[str, Any]  # title, description, etc.
-    processed: bool = False
-    created_at: datetime = datetime.now(timezone.utc)
+    language: str
+    created_at: datetime
+    metadata: Dict[str, Any] = {}
+    channel_id: Optional[str] = None
     updated_at: Optional[datetime] = None
 
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            'video_id': self.video_id,
-            'channel_id': self.channel_id,
-            'segments': [vars(segment) for segment in self.segments],
-            'metadata': self.metadata,
-            'processed': self.processed,
-            'created_at': self.created_at,
-            'updated_at': self.updated_at
-        }
-
-@dataclass
-class ProcessedTranscript:
+class ProcessedTranscript(BaseModel):
     """Model for cleaned and processed transcript data."""
     video_id: str
     channel_id: Optional[str]
@@ -42,8 +28,8 @@ class ProcessedTranscript:
     metadata: Dict[str, Any]
     word_count: int
     language: str
-    processing_stats: Dict[str, Any]  # cleaning stats, token counts, etc.
-    created_at: datetime = datetime.now(timezone.utc)
+    processing_stats: Dict[str, Any]
+    created_at: datetime = datetime.now()
     updated_at: Optional[datetime] = None
 
     def to_dict(self) -> Dict[str, Any]:

@@ -7,8 +7,8 @@ import instructor
 from anthropic import Anthropic
 from openai import OpenAI
 from pydantic import BaseModel
-from ...infrastructure.config.llm_config import LLMConfig
-from ...infrastructure.error_handling.exceptions import LLMError, ErrorCode, ErrorSeverity
+from infrastructure.config.llm_config import LLMConfig
+from infrastructure.error_handling.exceptions import LLMError, ErrorCode, ErrorSeverity
 
 """
 LLM Provider Factory Module

@@ -1,39 +1,92 @@
 # Software/DataHarvester/services/data_ingestion/application/services/transcript/transcript_processor.py
 
-from typing import List
+from typing import List, Dict, Any
+from celery import Celery
 from infrastructure.config.config_manager import ConfigManager
 from infrastructure.logging.logger import get_logger
-from infrastructure.persistence.mongodb.mongo_repository import MongoDBClient
 from infrastructure.error_handling.middleware.error_middleware import ErrorMiddleware
-from application.services.transcript.transcript_service import TranscriptFetcher
-from application.services.text.text_cleaner_service import TranscriptCleaner
+from .transcript_service import TranscriptFetcher
+from ..text.text_cleaner_service import TranscriptCleaner
+
+# Initialize Celery with Redis backend
+celery_app = Celery('transcript_tasks',
+                   broker='redis://redis:6379/0',
+                   backend='redis://redis:6379/0')
 
 logger = get_logger()
 
+@celery_app.task(name='transcript.process_video')
+def process_video_task(video_url: str) -> Dict[str, Any]:
+    """Process a single video transcript and queue for storage."""
+    processor = VideoProcessor()
+    result = processor.process_single_video(video_url)
+    return result
+
+@celery_app.task(name='transcript.process_batch')
+def process_batch_task(video_urls: List[str]) -> List[Dict[str, Any]]:
+    """Process a batch of video transcripts."""
+    results = []
+    for url in video_urls:
+        result = process_video_task.delay(url)
+        results.append(result)
+    return results
+
 class VideoProcessor:
-    def __init__(self, mongo_uri: str | None = None):
+    def __init__(self):
         self.config = ConfigManager()
-        self.sources = self.config.get_config('sources')
-        self.harvesting_config = self.config.get_config('harvesting')
-        self.cleaning_config = self.config.get_config('cleaning')
-        
-        # Initialize MongoDB client
-        if mongo_uri:
-            self.db = MongoDBClient(mongo_uri=mongo_uri)
-        else:
-            db_config = self.config.get_config('database')
-            self.db = MongoDBClient(mongo_uri=db_config.get('mongodb', {}).get('uri'))
-        
-        # Initialize components
+        self.batch_size = self.config.get_config('harvesting').get('batch_size', 10)
+        self.sources = self.config.get_config('harvesting').get('sources', {})
         self.extractor = TranscriptFetcher()
         self.cleaner = TranscriptCleaner()
-        
-        # Get processing settings
-        processing_config = self.harvesting_config.get('processing', {})
-        self.batch_size = processing_config.get('batch_size', 100)
-        self.max_workers = processing_config.get('max_workers', 4)
-        
-        logger.info(f"VideoProcessor initialized with MongoDB: {self.db.database_name}")
+
+    @ErrorMiddleware.catch_async_errors
+    def process_single_video(self, video_url: str) -> Dict[str, Any]:
+        """Process a single video transcript."""
+        try:
+            video_id = self.extractor.extract_video_id(video_url)
+            if not video_id:
+                logger.error(f"Could not extract video ID from {video_url}")
+                return {'success': False, 'video_url': video_url, 'error': 'Invalid video ID'}
+
+            transcripts = self.extractor.get_transcripts(video_id)
+            if not transcripts:
+                logger.warning(f"No transcripts found for video {video_id}")
+                return {'success': False, 'video_url': video_url, 'error': 'No transcripts found'}
+
+            # Clean transcripts
+            cleaned_transcripts = [
+                self.cleaner.clean_text(transcript['text'])
+                for transcript in transcripts
+            ]
+
+            # Queue for worker processing
+            celery_app.send_task(
+                'worker.store_transcript',
+                args=[{
+                    'video_id': video_id,
+                    'transcripts': cleaned_transcripts,
+                    'processed': False
+                }],
+                queue='storage'
+            )
+            logger.info(f"Successfully queued video {video_id} for storage")
+            return {
+                'success': True,
+                'video_id': video_id,
+                'transcript_count': len(cleaned_transcripts)
+            }
+
+        except Exception as e:
+            logger.error(f"Error processing video {video_url}: {str(e)}")
+            return {'success': False, 'video_url': video_url, 'error': str(e)}
+
+    @ErrorMiddleware.catch_async_errors
+    def process_batch(self, video_urls: List[str]) -> None:
+        """Process a batch of videos."""
+        for i in range(0, len(video_urls), self.batch_size):
+            batch = video_urls[i:i + self.batch_size]
+            process_batch_task.delay(batch)
+            logger.info(f"Submitted batch {i//self.batch_size + 1} for processing")
 
     def get_video_urls(self) -> List[str]:
         """Get list of video URLs to process."""
@@ -61,15 +114,19 @@ class VideoProcessor:
 
     @ErrorMiddleware.catch_async_errors
     async def process_videos(self):
-        """Process all configured videos."""
+        """Process all configured videos in batches."""
         videos = self.get_video_urls()
         playlists = self.get_playlist_urls()
         channels = self.get_channel_urls()
         
         logger.info(f"Found {len(videos)} videos, {len(playlists)} playlists, and {len(channels)} channels to process")
         
-        # TODO: Implement video processing logic
-        pass
+        # Process in batches
+        batch_size = self.batch_size
+        for i in range(0, len(videos), batch_size):
+            batch = videos[i:i + batch_size]
+            process_batch_task.delay(batch)
+            logger.info(f"Submitted batch {i//batch_size + 1} for processing")
 
     def process_video(self, video_url: str) -> bool:
         try:
@@ -124,10 +181,7 @@ class VideoProcessor:
             logger.info(f"Final cleaned transcripts count: {len(cleaned_transcripts)}")
             if cleaned_transcripts:
                 logger.info(f"First cleaned transcript: {cleaned_transcripts[0]}")
-                
-            # Store in database
-            self.db.store_video(video_id, cleaned_transcripts)
-            logger.info(f"Successfully stored video {video_id} in database")
+        
             return True
 
         except Exception as e:

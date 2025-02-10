@@ -1,6 +1,6 @@
 # Software/DataHarvester/services/data_transformation/src/infrastructure/tasks/task.py
 
-"""Re-export TaskContext from shared package"""
-from dataharvester_shared.models.task import TaskContext
+"""Define core task context model for pipeline processing"""
+from domain.interfaces.base import TaskContext
 
-__all__ = ['TaskContext'] 
+__all__ = ['TaskContext']

@@ -5,11 +5,10 @@ from abc import ABC
 from contextlib import contextmanager
 from typing import Dict, Optional, ClassVar, Type
 
-from dataharvester_shared.models.task import TaskContext
-from dataharvester_shared.schemas import EventSchema
-from dataharvester_shared.interfaces.base import Node
-from dataharvester_shared.interfaces.schema import PipelineSchema
-from dataharvester_shared.services.validate import PipelineValidator
+from ..models import TaskContext, EventSchema
+from .validators import PipelineValidator
+from domain.interfaces.base import Node
+from domain.interfaces.schema import PipelineSchema
 from services.api.app.endpoints import BaseRouter
 
 """

@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["pipeline_worker"]
+packages = ["pipeline_worker", "pipeline_worker.schemas"]
 
 [tool.black]
 line-length = 135

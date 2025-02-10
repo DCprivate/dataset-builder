@@ -23,10 +23,6 @@ ENV PYTHONPATH=/app/src
 # Create and set working directory
 WORKDIR /app
 
-# Copy shared package first
-COPY services/shared /shared
-RUN pip install -e /shared
-
 # Copy package files
 COPY services/data_transformation/pyproject.toml /app/
 COPY services/data_transformation/src /app/src/

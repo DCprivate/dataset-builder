@@ -1,8 +1,9 @@
 # Software/DataHarvester/services/data_transformation/domain/interfaces/base.py
 
 from abc import ABC, abstractmethod
-from dataharvester_shared.models.task import TaskContext
-
+from pydantic import BaseModel
+from domain.models import TaskContext, PipelineSchema
+    
 """
 Base Node Module
 
@@ -58,3 +59,11 @@ class Node(ABC):
             2. Store results in task_context.nodes[self.node_name]
         """
         pass
+
+
+class TaskContext(BaseModel):
+    """Shared context object passed through pipeline nodes"""
+    raw_data: dict
+    processing_steps: list = []
+    results: dict = {}
+    errors: list = []

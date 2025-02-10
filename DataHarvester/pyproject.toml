@@ -35,4 +35,6 @@ description = "YouTube Subtitle Data Harvester"
 authors = ["Jay-Alexander Elliot <11063158@uvu.edu>"]
 
 [tool.poetry.dependencies]
-python = "==3.12.8" 
+python = "==3.12.8"
+celery = "^5.3.6"
+redis = "^5.0.1" 

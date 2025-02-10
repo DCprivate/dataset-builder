@@ -1,6 +1,6 @@
 # Software/DataHarvester/services/data_ingestion/infrastructure/error_handling/handlers/error_handler.py
 
-from typing import Optional, Dict, Any, Type, Callable, TypeVar
+from typing import Optional, Dict, Any, Type, Callable, TypeVar, Union, Tuple
 import functools
 import logging
 from pymongo import errors as pymongo_errors
@@ -87,23 +87,16 @@ class ErrorHandler:
         
         logger.log(log_level, str(error), extra=error.to_dict())
 
-def handle_errors(
-    *error_types: Type[Exception],
-    context: Optional[str] = None,
-    severity: ErrorSeverity = ErrorSeverity.ERROR,
-    reraise: bool = True
-) -> Callable:
-    """Decorator for handling errors in functions."""
-    
-    def decorator(func: Callable) -> Callable:
+def handle_errors(error_types: Union[Type[Exception], Tuple[Type[Exception], ...]], 
+                 context: Optional[str] = None,
+                 severity: ErrorSeverity = ErrorSeverity.ERROR):
+    def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             try:
                 return func(*args, **kwargs)
             except error_types as e:
                 error = ErrorHandler.handle(e, context, severity)
-                if reraise:
-                    raise error
-                return None
+                raise error
         return wrapper
     return decorator 

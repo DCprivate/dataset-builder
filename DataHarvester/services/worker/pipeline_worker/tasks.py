@@ -1,13 +1,10 @@
 # Software/DataHarvester/services/worker/pipeline_worker/tasks.py
 
-from dataharvester_shared.config.settings import get_settings
-from dataharvester_shared.mongodb.repository import MongoRepository
-from dataharvester_shared.schemas import EventSchema
-from .celery_config import celery_app
+from .celery_config import celery_app, settings
+from domain.interfaces.schema import EventSchema
+from domain.infrastructure.mongodb.repository import DataTransformationRepository
 from .registry import PipelineRegistry
 from datetime import datetime, timezone
-
-settings = get_settings()
 
 """
 Pipeline Task Processing Module
@@ -32,9 +29,9 @@ async def process_incoming_event(event_id: str):
         event_id: Unique identifier of the event to process
     """
     # Initialize repository with settings
-    repository = MongoRepository(
-        mongo_uri=settings.database.mongo_uri,
-        database=settings.database.name,
+    repository = DataTransformationRepository(
+        mongo_uri=settings.mongo_uri,
+        database=settings.database_name,
         project_name=settings.app_name
     )
 

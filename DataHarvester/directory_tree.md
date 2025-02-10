@@ -4,14 +4,7 @@ jay@DESKTOP-N3AJ5U8:~/Github/dataset-builder/DataHarvester$ tree
 ├── compose
 │   └── docker-compose.yml
 ├── directory_tree.md
-├── docs
-│   ├── directory_tree.md
-│   ├── to-do-2.md
-│   └── to-do.md
-├── examples
-│   └── output-example.json
 ├── ideas.md
-├── logs
 ├── pyproject.toml
 └── services
     ├── data_ingestion
@@ -68,6 +61,7 @@ jay@DESKTOP-N3AJ5U8:~/Github/dataset-builder/DataHarvester$ tree
     │   │   └── monitoring
     │   │       ├── __init__.py
     │   │       └── health_checker.py
+    │   ├── models
     │   ├── presentation
     │   │   ├── __init__.py
     │   │   └── cli
@@ -157,29 +151,6 @@ jay@DESKTOP-N3AJ5U8:~/Github/dataset-builder/DataHarvester$ tree
     │   ├── init_mongo.py
     │   ├── mongod.conf
     │   └── pyproject.toml
-    ├── shared
-    │   ├── Dockerfile.shared
-    │   ├── __init__.py
-    │   ├── directory_tree.md
-    │   ├── pyproject.toml
-    │   └── src
-    │       ├── __init__.py
-    │       └── dataharvester_shared
-    │           ├── __init__.py
-    │           ├── config
-    │           │   ├── celery_config.py
-    │           │   └── settings.py
-    │           ├── interfaces
-    │           │   ├── __init__.py
-    │           │   └── base.py
-    │           ├── models
-    │           │   ├── __init__.py
-    │           │   └── task.py
-    │           ├── mongodb
-    │           │   ├── __init__.py
-    │           │   ├── models.py
-    │           │   └── repository.py
-    │           └── schemas.py
     └── worker
         ├── Dockerfile.celery
         ├── directory_tree.md
@@ -190,4 +161,4 @@ jay@DESKTOP-N3AJ5U8:~/Github/dataset-builder/DataHarvester$ tree
         │   └── tasks.py
         └── pyproject.toml
 
-56 directories, 133 files
+47 directories, 113 files

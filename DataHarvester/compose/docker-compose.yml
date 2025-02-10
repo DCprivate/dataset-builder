@@ -7,35 +7,28 @@ services:
       dockerfile: services/data_ingestion/Dockerfile.DI
     container_name: "${PROJECT_NAME}_data_ingestion"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/
+      - MONGO_URI=mongodb://mongodb:27017/
       - MONGO_DB=dataharvester
       - LOG_LEVEL=INFO
       - PYTHONUNBUFFERED=1
       - NLTK_DATA=/usr/local/share/nltk_data
       - SPACY_MODEL=en_core_web_sm
+      - REDIS_URL=redis://redis:6379/0
     volumes:
       - ../data:/app/data
-      - ../src:/app/src:ro
-      - ../main.py:/app/main.py:ro
       - ../logs:/app/logs
-      - models_data:/usr/local/lib/python3.12/site-packages/
-      - nltk_data:/usr/local/share/nltk_data
-      - spacy_data:/usr/local/lib/python3.12/site-packages/en_core_web_sm
     depends_on:
-      mongo:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+      - redis
+      - celery_worker
     networks:
       - backend
-      - database
     healthcheck:
       test: |
         python -c "
         import nltk, spacy, pymongo;
         nltk.data.find('tokenizers/punkt');
         spacy.load('en_core_web_sm');
-        pymongo.MongoClient('mongodb://mongo:27017/').admin.command('ping')
+        pymongo.MongoClient('mongodb://mongodb:27017/').admin.command('ping')
         "
       interval: 30s
       timeout: 10s
@@ -48,20 +41,17 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  mongo:
+  mongodb:
     build:
       context: ../services/database
       dockerfile: Dockerfile.MongoDB
-    container_name: "${PROJECT_NAME}_mongo"
+    container_name: "${PROJECT_NAME}_mongodb"
     ports:
       - "${MONGO_PORT:-27019}:27017"
     volumes:
       - mongodb_data:/data/db
-      - mongodb_config:/data/configdb
-      - ../services/database/mongod.conf:/etc/mongod.conf
-    command: [ "mongod", "--config", "/etc/mongod.conf" ]
     networks:
-      - database
+      - db_network
     healthcheck:
       test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
       interval: 30s
@@ -81,14 +71,12 @@ services:
       dockerfile: services/worker/Dockerfile.celery
     container_name: "${PROJECT_NAME}_celery_worker"
     depends_on:
-      redis:
-        condition: service_healthy
-      mongo:
-        condition: service_healthy
+      - redis
+      - mongodb
     restart: unless-stopped
     networks:
       - backend
-      - database
+      - db_network
     logging:
       driver: "json-file"
       options:
@@ -97,19 +85,18 @@ services:
     environment:
       - PYTHONPATH=/app
       - REDIS_URL=redis://redis:6379/0
-      - MONGO_URI=mongodb://mongo:27017/
+      - MONGO_URI=mongodb://mongodb:27017/
+      - LOG_LEVEL=INFO
 
   redis:
+    image: redis:7-alpine
     container_name: "${PROJECT_NAME}_redis"
+    command: redis-server --appendonly yes
     healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
       interval: 30s
-      retries: 5
-      test:
-        - CMD
-        - redis-cli
-        - ping
       timeout: 10s
-    image: redis:latest
+      retries: 5
     ports:
       - "6379:6379"
     restart: unless-stopped
@@ -130,16 +117,16 @@ services:
     container_name: "${PROJECT_NAME}_data_transformation"
     environment:
       - PYTHONPATH=/app
-      - MONGO_URI=mongodb://mongo:27017/
+      - MONGODB_URI=mongodb://mongodb:27017/dataharvester
+      - REDIS_URL=redis://redis:6379/0
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
     depends_on:
-      mongo:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+      - mongodb
+      - redis
+      - celery_worker
     networks:
       - backend
-      - database
+      - db_network
     healthcheck:
       test: [ "CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')" ]
       interval: 30s
@@ -155,16 +142,10 @@ services:
 
 networks:
   backend:
-    name: dataharvester_backend
     driver: bridge
-  database:
-    name: dataharvester_database
-    driver: bridge
+  db_network:
+    internal: true
 
 volumes:
   mongodb_data:
-  mongodb_config:
-  models_data:
-  nltk_data:
-  spacy_data:
   redis_data:

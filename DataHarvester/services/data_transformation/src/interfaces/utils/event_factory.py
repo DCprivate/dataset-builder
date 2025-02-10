@@ -4,7 +4,7 @@ import json
 import logging
 from pathlib import Path
 from typing import Dict, Any, List
-from dataharvester_shared.schemas import EventSchema
+from pydantic import BaseModel
 
 """
 Event Factory Module
@@ -17,6 +17,12 @@ interface.
 logging.basicConfig(level=logging.INFO)
 
 EVENTS_DIR = Path(__file__).parent.parent.parent / "requests/events"
+
+
+class EventSchema(BaseModel):
+    event_type: str
+    payload: dict
+    metadata: dict = {}
 
 
 class EventFactory:
