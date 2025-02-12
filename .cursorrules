@@ -1,7 +1,6 @@
 # .cursorrules
 # This is a rule set for the project. It is used to guide the development of the project,
-# incorporating AWS, cloud tools, Python, ML, web scraping, and data processing pipelines,
-# following best practices for software engineering.
+# now reflecting an event-driven architecture for local (non-cloud) deployments.
 
 # ------------------------------------------------------------------------------
 # Author
@@ -15,11 +14,11 @@ author:
 # ------------------------------------------------------------------------------
 name: ML Model Fine-tuning Data Pipeline
 architecture_style:
-  primary: Pipeline Architecture
+  primary: Event-Driven Architecture
   python_version: "3.12.8"  # STRICT: Project requires exactly Python 3.12.8 (December 2024 release)
   python_docker_image: "python:3.12.8-slim-bookworm"  # STRICT: All Python containers must use this exact image
   patterns:
-    - Pipeline Architecture (DAG-based)
+    - Event-Driven
     - Factory Pattern
     - Strategy Pattern
     - Repository Pattern
@@ -32,17 +31,11 @@ scale_requirements:
   storage_requirements: Dynamic
 
 cloud_integration:
-  # This system is cloud-agnostic but defaults to AWS container deployments if needed.
-  provider: AWS
-  frameworks:
-    - AWS Well-Architected Framework
-    - Amazon SageMaker for ML model training/deployment
-    - AWS S3 for data storage and retrieval
-    - AWS Batch or Step Functions for pipeline orchestration
-    - AWS Glue for data transformations
-  infrastructure_as_code:
-    - Terraform
-    - Maintain environment parity across Dev and Prod
+  # This system is cloud-agnostic.
+  # Currently, no cloud usage for hosting; local environment only.
+  provider: none
+  frameworks: []
+  infrastructure_as_code: []
 
 # ------------------------------------------------------------------------------
 # Core Architectural Principles
@@ -234,6 +227,20 @@ guidelines:
     - Monitor resource usage
 
 # ------------------------------------------------------------------------------
+# Testing
+# ------------------------------------------------------------------------------
+testing:
+  framework: pytest
+  test_types:
+    - unit
+    - integration
+  best_practices:
+    - Store tests in a dedicated `tests` directory
+    - Write clear, descriptive test names
+    - Keep tests small and focused
+    - Ensure coverage for critical code paths
+
+# ------------------------------------------------------------------------------
 # Cursor AI Requirements
 # ------------------------------------------------------------------------------
 cursor_ai:
@@ -361,6 +368,3 @@ python_packaging:
     multi_line_output = 3
     line_length = 135
     ```
-
-# ------------------------------------------------------------------------------
-# Ensure this document is actively enforced through reviews and automated checks.

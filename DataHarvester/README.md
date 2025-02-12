@@ -1,6 +1,8 @@
+# DataHarvester/README.md
+// Start of Selection
 # DataHarvester
 
-A robust data pipeline for processing and transforming data. Built with Python 3.12.8, MongoDB, and Redis.
+A robust, pipeline-based architecture for collecting, transforming, and preparing data for ML model fine-tuning. Built with Python 3.12.8, MongoDB, and Redis, this framework provides modular microservices that follow domain-driven design principles. It's cloud-agnostic but can be seamlessly deployed on AWS or other container environments.
 
 ## Project Structure
 ```
@@ -8,13 +10,13 @@ DataHarvester/
 ├── services/
 │   ├── api/              # FastAPI service
 │   ├── caddy/            # Reverse proxy
-│   ├── data_ingestion/   # Data collection service
-│   ├── data_transformation/  # Data processing service
+│   ├── data_ingestion/   # Data collection service (scraping, ingestion)
+│   ├── data_transformation/  # Data processing service (cleaning, transformations)
 │   ├── database/         # MongoDB configuration
 │   ├── shared/           # Shared utilities
 │   └── worker/           # Celery worker service
 ├── compose/              # Docker compose files
-├── data/                 # Data storage
+├── data/                 # Data storage (raw, processed)
 ├── docs/                 # Documentation
 ├── logs/                 # Application logs
 └── examples/             # Example outputs
@@ -26,7 +28,7 @@ DataHarvester/
 - Python 3.12.8
 - pip 24.0 or higher
 - venv (usually comes with Python)
-- Docker and Docker Compose (for running services)
+- Docker and Docker Compose (for local container orchestration)
 
 ### Initial Setup
 
@@ -70,16 +72,16 @@ Create/update `.vscode/settings.json`:
 
 ### Service Dependencies
 
-Each service must be installed in order, as they depend on the shared package:
+Each microservice depends on the shared package, so install it first.
 
-1. Install shared utilities first:
+1. Install shared utilities:
 ```bash
 cd services/shared
 pip install -e .
 cd ../..
 ```
 
-2. Install service packages (in any order after shared):
+2. Then install other service packages:
 ```bash
 # API Service
 cd services/api
@@ -114,6 +116,7 @@ Using Docker Compose:
 cd compose
 docker-compose up --build
 ```
+(If deploying to AWS, configure your infrastructure as code and container registry accordingly.)
 
 ### Dependency Auditing
 
@@ -125,12 +128,12 @@ pip-audit
 
 ## Documentation
 
-See the `docs/` directory for additional documentation:
+See the `docs/` directory for pipeline details:
 - `docs/to-do.md` - Project tasks and roadmap
 - `docs/to-do-2.md` - Additional planned features
 
 ## Monitoring and Logs
 
-- Application logs are stored in the `logs/` directory
-- Each service maintains its own log files
-- MongoDB data is persisted in docker volumes
+- Application logs are stored in the `logs/` directory.
+- Each service writes logs independently for better traceability.
+- MongoDB data is persisted in Docker volumes; you can configure AWS S3 or another storage solution as needed for larger-scale workflows.
