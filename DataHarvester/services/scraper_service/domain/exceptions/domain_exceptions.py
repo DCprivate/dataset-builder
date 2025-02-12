@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/domain/exceptions/domain_exceptions.py
+# Software/DataHarvester/services/scraper_service/domain/exceptions/domain_exceptions.py
 
 class YouTubeScraperError(Exception):
     """Base exception class for YouTube Scraper."""

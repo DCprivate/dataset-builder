@@ -1,4 +1,4 @@
-(base) jay@MSI:~/GitHub/dataset-builder/DataHarvester$ tree
+# jay@DESKTOP-N3AJ5U8:~/Github/dataset-builder/DataHarvester$
 .
 ├── README.md
 ├── compose
@@ -10,6 +10,11 @@
     ├── batch_processor
     │   ├── Dockerfile.celery
     │   ├── directory_tree.md
+    │   ├── infrastructure
+    │   │   └── redis
+    │   │       ├── __init__.py
+    │   │       ├── consumer.py
+    │   │       └── producer.py
     │   ├── pipeline_worker
     │   │   ├── __init__.py
     │   │   ├── base.py
@@ -22,6 +27,10 @@
     ├── mongo_service
     │   ├── Dockerfile.MongoDB
     │   ├── directory_tree.md
+    │   ├── infrastructure
+    │   │   └── redis
+    │   │       ├── __init__.py
+    │   │       └── consumer.py
     │   ├── init_mongo.py
     │   ├── mongod.conf
     │   └── pyproject.toml
@@ -73,15 +82,25 @@
     │   │   ├── logging
     │   │   │   ├── __init__.py
     │   │   │   └── logger.py
-    │   │   └── monitoring
+    │   │   ├── monitoring
+    │   │   │   ├── __init__.py
+    │   │   │   └── health_checker.py
+    │   │   └── redis
     │   │       ├── __init__.py
-    │   │       └── health_checker.py
+    │   │       ├── config.py
+    │   │       └── producer.py
     │   ├── presentation
     │   │   ├── __init__.py
     │   │   └── cli
     │   │       ├── __init__.py
     │   │       └── cli_handler.py
     │   ├── pyproject.toml
+    │   ├── tests
+    │   │   ├── infrastructure
+    │   │   │   └── redis
+    │   │   │       └── test_producer.py
+    │   │   └── integration
+    │   │       └── test_redis_integration.py
     │   └── validation
     │       ├── __init__.py
     │       ├── rules
@@ -122,6 +141,10 @@
             │   │   ├── __init__.py
             │   │   ├── factory.py
             │   │   └── repository.py
+            │   ├── redis
+            │   │   ├── __init__.py
+            │   │   ├── consumer.py
+            │   │   └── producer.py
             │   └── tasks
             │       ├── __init__.py
             │       └── task.py
@@ -162,4 +185,4 @@
                 ├── prompt_loader.py
                 └── validate.py
 
-45 directories, 116 files
+55 directories, 129 files

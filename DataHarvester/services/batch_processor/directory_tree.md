@@ -1,7 +1,12 @@
-(base) jay@MSI:~/GitHub/dataset-builder/DataHarvester/services/worker$ tree
+# jay@DESKTOP-N3AJ5U8:~/Github/dataset-builder/DataHarvester/services/batch_processor$ tree
 .
 ├── Dockerfile.celery
 ├── directory_tree.md
+├── infrastructure
+│   └── redis
+│       ├── __init__.py
+│       ├── consumer.py
+│       └── producer.py
 ├── pipeline_worker
 │   ├── __init__.py
 │   ├── base.py
@@ -12,4 +17,4 @@
 │   └── validators.py
 └── pyproject.toml
 
-1 directory, 10 files
+3 directories, 13 files

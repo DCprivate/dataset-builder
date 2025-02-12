@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/worker/pipeline_worker/base.py
+# Software/DataHarvester/services/batch_processor/pipeline_worker/base.py
 
 import logging
 from abc import ABC

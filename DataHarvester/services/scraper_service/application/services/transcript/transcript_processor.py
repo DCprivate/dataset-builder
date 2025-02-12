@@ -1,5 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/application/services/transcript/transcript_processor.py
-
+# Software/DataHarvester/services/scraper_service/application/services/transcript/transcript_processor.py
 from typing import List, Dict, Any
 from celery import Celery
 from infrastructure.config.config_manager import ConfigManager
@@ -7,6 +6,9 @@ from infrastructure.logging.logger import get_logger
 from infrastructure.error_handling.middleware.error_middleware import ErrorMiddleware
 from .transcript_service import TranscriptFetcher
 from ..text.text_cleaner_service import TranscriptCleaner
+from infrastructure.redis.producer import ScraperProducer
+from domain.models.transcript import ProcessedTranscript as TranscriptModel
+from datetime import datetime, timezone
 
 # Initialize Celery with Redis backend
 celery_app = Celery('transcript_tasks',
@@ -38,6 +40,7 @@ class VideoProcessor:
         self.sources = self.config.get_config('harvesting').get('sources', {})
         self.extractor = TranscriptFetcher()
         self.cleaner = TranscriptCleaner()
+        self.producer = ScraperProducer()
 
     @ErrorMiddleware.catch_async_errors
     def process_single_video(self, video_url: str) -> Dict[str, Any]:
@@ -186,4 +189,43 @@ class VideoProcessor:
 
         except Exception as e:
             logger.error(f"Error processing video {video_url}: {str(e)}")
-            return False 
+            return False
+
+    async def process_transcript(self, video_url: str, transcript_data: Dict[str, Any]) -> bool:
+        """Process transcript and send to queue"""
+        try:
+            # Create transcript model
+            transcript = TranscriptModel(
+                video_id=video_url.split("=")[-1],
+                channel_id=transcript_data.get("channel_id"),
+                full_text=transcript_data.get("content", ""),
+                metadata=transcript_data.get("metadata", {}),
+                word_count=len(transcript_data.get("content", "").split()),
+                language=transcript_data.get("language", "en"),
+                processing_stats={"processed_at": datetime.now(timezone.utc).isoformat()}
+            )
+            
+            # Send to Redis queue
+            success = self.producer.send_to_queue(
+                content=transcript.full_text,
+                metadata={
+                    "video_id": transcript.video_id,
+                    "language": transcript.language,
+                    **transcript.metadata
+                }
+            )
+            
+            if not success:
+                logger.error(f"Failed to queue transcript for {video_url}")
+                return False
+                
+            logger.info(f"Successfully queued transcript for {video_url}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error processing transcript for {video_url}: {str(e)}")
+            return False
+            
+    def __del__(self):
+        """Cleanup Redis connection"""
+        self.producer.close() 

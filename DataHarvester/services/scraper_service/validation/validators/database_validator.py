@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/validation/validators/database_validator.py
+# Software/DataHarvester/services/scraper_service/validation/validators/database_validator.py
 
 from typing import Dict, Any
 from .base_validator import BaseValidator

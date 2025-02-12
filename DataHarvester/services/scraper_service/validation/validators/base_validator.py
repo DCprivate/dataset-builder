@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/validation/validators/base_validator.py   
+# Software/DataHarvester/services/scraper_service/validation/validators/base_validator.py   
 
 from typing import Dict, Any
 from abc import ABC, abstractmethod

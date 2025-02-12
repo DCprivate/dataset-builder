@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/domain/models/transcript.py
+# Software/DataHarvester/services/scraper_service/domain/models/transcript.py
 
 from typing import List, Dict, Optional, Any
 from datetime import datetime

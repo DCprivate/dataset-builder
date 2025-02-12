@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/worker/pipeline_worker/registry.py
+# Software/DataHarvester/services/batch_processor/pipeline_worker/registry.py
 
 import logging
 from typing import Dict, Type

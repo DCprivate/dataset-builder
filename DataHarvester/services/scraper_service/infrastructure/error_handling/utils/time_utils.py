@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/infrastructure/error_handling/utils/time_utils.py
+# Software/DataHarvester/services/scraper_service/infrastructure/error_handling/utils/time_utils.py
 
 from datetime import datetime, timezone
 from typing import Union

@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/Dockerfile.DI
+# Software/DataHarvester/services/scraper_service/Dockerfile.DI
 
 # Use Python 3.12.8 as specified in the requirements
 FROM python:3.12.8-slim-bookworm
@@ -20,7 +20,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy only the data ingestion service code
-COPY services/data_ingestion /app
+COPY services/scraper_service /app
 RUN pip install -e .
 
 # Install NLTK data
@@ -34,4 +34,4 @@ ENV PYTHONPATH=/app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-CMD ["python", "-m", "data_ingestion.main"]
+CMD ["python", "-m", "scraper_service.main"]

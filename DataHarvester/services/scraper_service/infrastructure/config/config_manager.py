@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/infrastructure/config/config_manager.py
+# Software/DataHarvester/services/scraper_service/infrastructure/config/config_manager.py
 
 from pathlib import Path
 import yaml

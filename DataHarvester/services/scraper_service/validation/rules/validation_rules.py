@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/validation/rules/validation_rules.py
+# Software/DataHarvester/services/scraper_service/validation/rules/validation_rules.py
 
 from typing import Dict, Any
 

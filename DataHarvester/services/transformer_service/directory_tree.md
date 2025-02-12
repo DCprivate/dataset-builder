@@ -1,5 +1,6 @@
-(base) jay@MSI:~/GitHub/dataset-builder/DataHarvester/services/data_transformation$ tree
-.
+# jay@DESKTOP-N3AJ5U8:~/Github/dataset-builder/DataHarvester/services/transformer_service$ 
+
+
 ├── Dockerfile.DT
 ├── __init__.py
 ├── directory_tree.md
@@ -27,6 +28,10 @@
     │   │   ├── __init__.py
     │   │   ├── factory.py
     │   │   └── repository.py
+    │   ├── redis
+    │   │   ├── __init__.py
+    │   │   ├── consumer.py
+    │   │   └── producer.py
     │   └── tasks
     │       ├── __init__.py
     │       └── task.py
@@ -67,4 +72,4 @@
         ├── prompt_loader.py
         └── validate.py
 
-17 directories, 49 files
+18 directories, 52 files

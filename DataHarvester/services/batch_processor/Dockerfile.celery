@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/worker/Dockerfile.celery
+# Software/DataHarvester/services/batch_processor/Dockerfile.celery
 
 FROM python:3.12.8-slim-bookworm
 

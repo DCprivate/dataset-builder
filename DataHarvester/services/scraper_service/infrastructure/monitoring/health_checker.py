@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/infrastructure/monitoring/health_checker.py
+# Software/DataHarvester/services/scraper_service/infrastructure/monitoring/health_checker.py
 
 import nltk
 from typing import Tuple, List, Dict

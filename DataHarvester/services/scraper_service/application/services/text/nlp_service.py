@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/application/services/text/nlp_service.py
+# Software/DataHarvester/services/scraper_service/application/services/text/nlp_service.py
 
 from infrastructure.logging.logger import get_logger
 import nltk

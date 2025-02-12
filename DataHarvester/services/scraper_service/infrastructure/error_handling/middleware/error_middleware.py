@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/infrastructure/error_handling/middleware/error_middleware.py
+# Software/DataHarvester/services/scraper_service/infrastructure/error_handling/middleware/error_middleware.py
 
 from functools import wraps
 import time

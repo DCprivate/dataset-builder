@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_transformation/src/services/prompt_loader.py
+# Software/DataHarvester/services/transformer_service/src/services/prompt_loader.py
 
 from pathlib import Path
 import frontmatter

@@ -1,9 +1,11 @@
+# Software/DataHarvester/services/mongo_service/pyproject.toml
+
 [build-system]
 requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "dataharvester-database"
+name = "mongo-service"
 version = "0.1.0"
 description = "Database initialization and management for DataHarvester"
 requires-python = "==3.12.8"

@@ -1,4 +1,4 @@
-# Software/DataHarvester/src/infrastructure/error_handling/error_registry.py
+# Software/DataHarvester/services/scraper_service/infrastructure/error_handling/error_registry.py
 
 from typing import Dict, Type, Callable
 from .exceptions.specific import DatabaseError, ScrapingError, ValidationError

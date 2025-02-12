@@ -1,4 +1,4 @@
-(base) jay@MSI:~/GitHub/dataset-builder/DataHarvester/services/data_ingestion$ tree
+# jay@DESKTOP-N3AJ5U8:~/Github/dataset-builder/DataHarvester/services/scraper_service$
 .
 ├── Dockerfile.DI
 ├── __init__.py
@@ -47,15 +47,25 @@
 │   ├── logging
 │   │   ├── __init__.py
 │   │   └── logger.py
-│   └── monitoring
+│   ├── monitoring
+│   │   ├── __init__.py
+│   │   └── health_checker.py
+│   └── redis
 │       ├── __init__.py
-│       └── health_checker.py
+│       ├── config.py
+│       └── producer.py
 ├── presentation
 │   ├── __init__.py
 │   └── cli
 │       ├── __init__.py
 │       └── cli_handler.py
 ├── pyproject.toml
+├── tests
+│   ├── infrastructure
+│   │   └── redis
+│   │       └── test_producer.py
+│   └── integration
+│       └── test_redis_integration.py
 └── validation
     ├── __init__.py
     ├── rules
@@ -69,4 +79,4 @@
         ├── scraping_validator.py
         └── youtube_validator.py
 
-21 directories, 47 files
+26 directories, 52 files

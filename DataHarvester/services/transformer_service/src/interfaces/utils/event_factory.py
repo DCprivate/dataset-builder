@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_transformation/src/interfaces/utils/event_factory.py
+# Software/DataHarvester/services/transformer_service/src/interfaces/utils/event_factory.py
 
 import json
 import logging

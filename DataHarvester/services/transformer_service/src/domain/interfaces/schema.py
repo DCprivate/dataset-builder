@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_transformation/domain/interfaces/schema.py
+# Software/DataHarvester/services/transformer_service/src/domain/interfaces/schema.py
 
 from typing import List, Type, Optional
 from domain.interfaces.base import Node

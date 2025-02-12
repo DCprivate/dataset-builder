@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/worker/pipeline_worker/tasks.py
+# Software/DataHarvester/services/batch_processor/pipeline_worker/tasks.py
 
 from .celery_config import celery_app, settings
 from domain.interfaces.schema import EventSchema

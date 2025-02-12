@@ -1,9 +1,13 @@
-(base) jay@MSI:~/GitHub/dataset-builder/DataHarvester/services/database$ tree
+# jay@DESKTOP-N3AJ5U8:~/Github/dataset-builder/DataHarvester/services/mongo_service$ tree
 .
 ├── Dockerfile.MongoDB
 ├── directory_tree.md
+├── infrastructure
+│   └── redis
+│       ├── __init__.py
+│       └── consumer.py
 ├── init_mongo.py
 ├── mongod.conf
 └── pyproject.toml
 
-0 directories, 5 files
+2 directories, 7 files

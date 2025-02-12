@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/worker/pipeline_worker/celery_config.py
+# Software/DataHarvester/services/batch_processor/pipeline_worker/celery_config.py
 
 from celery import Celery
 from pydantic_settings import BaseSettings

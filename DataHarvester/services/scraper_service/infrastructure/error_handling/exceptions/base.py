@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/infrastructure/error_handling/exceptions/base.py
+# Software/DataHarvester/services/scraper_service/infrastructure/error_handling/exceptions/base.py
 
 from typing import Optional, Dict, Any
 from enum import Enum

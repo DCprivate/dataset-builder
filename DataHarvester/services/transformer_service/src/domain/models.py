@@ -1,3 +1,5 @@
+# Software/DataHarvester/services/transformer_service/src/domain/models.py
+
 from pydantic import BaseModel
 
 class CleanedDocument(BaseModel):

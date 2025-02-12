@@ -1,0 +1,1 @@
+# Software/DataHarvester/services/mongo_service/infrastructure/redis/consumer.py

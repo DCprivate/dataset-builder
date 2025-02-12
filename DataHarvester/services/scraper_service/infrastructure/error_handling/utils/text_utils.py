@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/infrastructure/error_handling/utils/text_utils.py
+# Software/DataHarvester/services/scraper_service/infrastructure/error_handling/utils/text_utils.py
 
 import re
 from typing import List

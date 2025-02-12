@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/database/init_mongo.py
+# Software/DataHarvester/services/mongo_service/init_mongo.py
 
 from typing import List
 from pymongo import MongoClient, ASCENDING

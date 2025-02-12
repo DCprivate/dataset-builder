@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/infrastructure/logging/logger.py
+# Software/DataHarvester/services/scraper_service/infrastructure/logging/logger.py
 
 import logging
 from datetime import datetime

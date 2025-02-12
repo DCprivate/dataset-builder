@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/infrastructure/error_handling/exceptions/specific.py
+# Software/DataHarvester/services/scraper_service/infrastructure/error_handling/exceptions/specific.py
 
 from typing import Optional, Dict, Any
 from .base import BaseError, ErrorCode, ErrorSeverity

@@ -1,11 +1,13 @@
+# Software/DataHarvester/services/batch_processor/pyproject.toml
+
 [build-system]
 requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pipeline-worker"
+name = "batch-processor"
 version = "0.1.0"
-description = "Pipeline Worker Service for DataHarvester"
+description = "Batch Processor Service for DataHarvester"
 requires-python = "==3.12.8"
 dependencies = [
     "celery==5.4.0",
@@ -20,7 +22,7 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["pipeline_worker", "pipeline_worker.schemas"]
+packages = ["batch_processor", "batch_processor.schemas"]
 
 [tool.black]
 line-length = 135

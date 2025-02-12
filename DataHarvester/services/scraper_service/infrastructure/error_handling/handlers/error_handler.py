@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/infrastructure/error_handling/handlers/error_handler.py
+# Software/DataHarvester/services/scraper_service/infrastructure/error_handling/handlers/error_handler.py
 
 from typing import Optional, Dict, Any, Type, Callable, TypeVar, Union, Tuple
 import functools

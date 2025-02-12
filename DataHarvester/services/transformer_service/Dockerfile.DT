@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_transformation/Dockerfile.DT
+# Software/DataHarvester/services/transformer_service/Dockerfile.DT
 
 FROM python:3.12.8-slim-bookworm
 
@@ -24,8 +24,8 @@ ENV PYTHONPATH=/app/src
 WORKDIR /app
 
 # Copy package files
-COPY services/data_transformation/pyproject.toml /app/
-COPY services/data_transformation/src /app/src/
+COPY services/transformer_service/pyproject.toml /app/
+COPY services/transformer_service/src /app/src/
 
 # Install package
 RUN pip install -e .
@@ -41,4 +41,4 @@ USER appuser
 EXPOSE 8000
 
 # Start the service
-CMD ["python", "-m", "uvicorn", "data_transformation.api.main:app", "--host", "0.0.0.0", "--port", "8000"] 
+CMD ["python", "-m", "uvicorn", "transformer_service.api.main:app", "--host", "0.0.0.0", "--port", "8000"] 

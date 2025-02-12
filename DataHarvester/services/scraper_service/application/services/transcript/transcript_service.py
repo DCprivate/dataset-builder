@@ -1,4 +1,4 @@
-# Software/DataHarvester/services/data_ingestion/application/services/transcript/transcript_fetcher.py
+# Software/DataHarvester/services/scraper_service/application/services/transcript/transcript_fetcher.py
 
 from typing import List
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled, NoTranscriptFound, VideoUnavailable
