@@ -1,6 +1,6 @@
 # dataset-builder
 Offline ingestion and indexing pipeline.
-Produces normalized documents, chunks, embeddings, and indexed knowledge for researchAI.
+Produces normalized documents, chunks, embeddings, and indexed knowledge for researchAI
 
 Structure:
 
