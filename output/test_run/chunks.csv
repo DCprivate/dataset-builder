@@ -1,0 +1,3 @@
+chunk_id,doc_id,text,token_estimate,metadata
+7eb9319c670cecc68c660db64d7c6100082e6fbe9b8809764a47f9eacaba8136:0001,7eb9319c670cecc68c660db64d7c6100082e6fbe9b8809764a47f9eacaba8136,"This is a sample input file.
+You can replace it with notes, a chapter export, or any other plain text source.",27,"{'source_type': 'text', 'source_uri': '/mnt/data/dataset-builder/examples/example.txt', 'title': 'example', 'chunk_index': 1, 'char_start': 0, 'char_end': 109}"
