@@ -1,2 +1,0 @@
-This is a sample input file.
-You can replace it with notes, a chapter export, or any other plain text source.
