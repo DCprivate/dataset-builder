@@ -4,7 +4,7 @@ from dataset_builder.utils import sha256_text
 from dataset_builder.ingest.text import TextIngester
 
 def main():
-    temp = sha256_text("test")
+    temp = sha256_text("tests")
     print(temp)
 
     ingester = TextIngester()
