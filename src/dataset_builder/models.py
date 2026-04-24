@@ -5,7 +5,7 @@ from typing import Any
 class NormalizedDocument:
     doc_id: str
     source_type: str
-    source_url: str
+    source_uri: str
     title: str | None
     text: str
     metadata: dict[str, Any] = field(default_factory=dict)

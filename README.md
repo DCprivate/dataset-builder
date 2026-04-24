@@ -55,7 +55,7 @@ This repository handles the first four. It does **not** bundle a retriever or LL
 ## Depenencies
 
 '''bash
-pip install typer pydantic tqdm orjson pyyaml
+pip install typer pydantic tqdm orjson pyyaml pypdf trafilatura youtube-transcript-api
 '''
 
 ## Installation
