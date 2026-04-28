@@ -1,0 +1,6 @@
+[
+  { "kind": "text", "value": "../documents/example.txt" },
+  { "kind": "pdf", "value": "../documents/pdf_test.pdf" },
+  { "kind": "website", "value": "https://example.com" },
+  { "kind": "youtube", "value": "https://www.youtube.com/watch?v=XeN7wKfDOPk" }
+]

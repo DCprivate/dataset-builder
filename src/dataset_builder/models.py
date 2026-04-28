@@ -9,3 +9,14 @@ class NormalizedDocument:
     title: str | None
     text: str
     metadata: dict[str, Any] = field(default_factory=dict)
+    
+@dataclass
+class ChunkRecord:
+    chunk_id: str
+    doc_id: str
+    text: str
+    token_estimate: int
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+    #def to_dict(self) -> dict[str, Any]:
+    #    return asdict(self)
