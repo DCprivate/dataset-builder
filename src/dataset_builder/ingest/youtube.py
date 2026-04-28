@@ -6,7 +6,7 @@ from dataset_builder.ingest.base import BaseIngester
 from dataset_builder.models import NormalizedDocument
 from dataset_builder.utils import normalize_whitespace, sha256_text
 
-# TODO: Probably don't need to collect all the timestamp stuff
+# TODO: Probably don't need to collect all the timestamp stuff.
 
 class YouTubeIngester(BaseIngester):
     @staticmethod
