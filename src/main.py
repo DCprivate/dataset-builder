@@ -3,6 +3,7 @@ from pathlib import Path
 #from dataset_builder.models import NormalizedDocument
 #from dataset_builder.utils import sha256_text
 
+from dataset_builder.chunking import Chunker
 from dataset_builder.registry import ingest_source
 from dataset_builder.ingest.text import TextIngester
 from dataset_builder.ingest.pdf import PdfIngester
@@ -52,14 +53,28 @@ def main():
     sources = load_sources("../config/sources.json")
     documents = build_documents(sources)
 
-    for doc in documents:
+    """for doc in documents:
         print("=" * 80)
         print(f"doc_id:       {doc.doc_id}")
         print(f"type:         {doc.source_type}")
         print(f"source:       {doc.source_uri}")
         print(f"title:        {doc.title}")
         print(f"text preview: {doc.text[:50]}")
-        print(f"metadata:     {str(doc.metadata)[:50]}")
+        print(f"metadata:     {str(doc.metadata)[:50]}")"""
+        
+    #print(documents)
+    
+    chunker = Chunker(chunk_size=900, chunk_overlap=150, min_chunk_chars=200)
+    
+    for doc in documents:
+        chunks = chunker.chunk_document(doc)
+        
+        for chunk in chunks[:3]:
+            print("-" * 80)
+            print(f"chunk_id: {chunk.chunk_id}")
+            print(f"token_estimate: {chunk.token_estimate}")
+            print(f"text preview: {chunk.text[:200]}")
+            print(f"metadata: {str(chunk.metadata)[:120]}")
 
 
 if __name__ == "__main__":
