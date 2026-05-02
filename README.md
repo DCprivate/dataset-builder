@@ -15,7 +15,7 @@ io.py — how outputs are written
 embeddings.py — later, since you want to defer that
 cli.py — last, once the internal flow makes sense
 
-That order goes from data model → behavior → orchestration.
+That order goes from data model → behavior → orchestration
 
 ## Supported inputs
 - Websites / URL lists
