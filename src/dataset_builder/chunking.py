@@ -1,4 +1,4 @@
-from dataset_builder.models import NormalizedDocument, ChunkRecord
+from dataset_builder.models import NormalizedDocument, ChunkRecord, EmbeddedChunk
 
 
 class Chunker:
@@ -15,7 +15,11 @@ class Chunker:
     def split_paragraphs(text: str) -> list[str]:
         return [part.strip() for part in text.split("\n\n") if part.strip()]
 
+
     def chunk_document(self, doc: NormalizedDocument) -> list[ChunkRecord]:
+        if not isinstance(doc, NormalizedDocument):
+            raise TypeError(f"Expected NormalizedDocument, got {type(doc)}")
+        
         paragraphs = self.split_paragraphs(doc.text)
         chunks: list[ChunkRecord] = []
 
@@ -93,3 +97,20 @@ class Chunker:
             )
 
         return chunks
+    
+    
+    def chunk_documents(self, documents: list[NormalizedDocument]) -> list[ChunkRecord]:
+        all_chunks = []
+
+        for doc in documents:
+            all_chunks.extend(self.chunk_document(doc))
+
+        return all_chunks
+    
+    def print_chunks(self, chunks: EmbeddedChunk):
+        for chunk in chunks[:3]:
+            print("-" * 80)
+            print(f"chunk_id: {chunk.chunk_id}")
+            print(f"token_estimate: {chunk.token_estimate}")
+            print(f"text preview: {chunk.text[:200]}")
+            print(f"metadata: {str(chunk.metadata)[:120]}")
