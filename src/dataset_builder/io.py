@@ -3,6 +3,14 @@ from dataclasses import asdict, is_dataclass
 from pathlib import Path
 from typing import Iterable, Any
 
+from dataset_builder.models import ChunkRecord
+
+
+def ensure_dir(path: str | Path) -> Path:
+    p = Path(path)
+    p.mkdir(parents=True, exist_ok=True)
+    return p
+
 
 def load_sources(json_path: str) -> list[dict]:
     path = Path(json_path)
@@ -27,12 +35,6 @@ def load_sources(json_path: str) -> list[dict]:
             raise ValueError(f"'kind' and 'value' must be strings at index {i}")
 
     return data
-
-
-def ensure_dir(path: str | Path) -> Path:
-    p = Path(path)
-    p.mkdir(parents=True, exist_ok=True)
-    return p
 
 
 def write_jsonl(records: Iterable[Any], output_path: str | Path) -> Path:
@@ -63,3 +65,8 @@ def read_jsonl(input_path: str | Path) -> list[dict]:
                 records.append(json.loads(line))
 
     return records
+
+
+def load_chunks_jsonl(input_path: str | Path) -> list[ChunkRecord]:
+    rows = read_jsonl(input_path)
+    return [ChunkRecord(**row) for row in rows]

@@ -8,6 +8,7 @@ class Embedder:
         self.model = SentenceTransformer(model_name)
 
     def embed_chunks(self, chunks: list[ChunkRecord]) -> list[EmbeddedChunk]:
+        print(chunks)
         texts = [chunk.text for chunk in chunks]
 
         vectors = self.model.encode(

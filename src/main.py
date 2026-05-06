@@ -3,7 +3,7 @@ from pathlib import Path
 #from dataset_builder.models import NormalizedDocument
 #from dataset_builder.utils import sha256_text
 
-from dataset_builder.io import load_sources, write_jsonl, read_jsonl, ensure_dir
+from dataset_builder.io import load_sources, write_jsonl, read_jsonl, ensure_dir, load_chunks_jsonl
 from dataset_builder.registry import ingest_source
 from dataset_builder.pipeline import build_documents
 from dataset_builder.chunking import Chunker
@@ -16,7 +16,7 @@ from dataset_builder.ingest.youtube import YouTubeIngester
 
 def main():
     # load sources
-    sources = load_sources("../config/sources.json")
+    sources = load_sources("../config/source.json")
     documents, failures = build_documents(sources)
     
     # chunk sources
@@ -28,12 +28,11 @@ def main():
     path_to_chunks = write_jsonl(chunks, out_dir / "chunks.jsonl")
     
     # read chunks from jsonl file
-    chunks_for_embedding = read_jsonl(out_dir / "chunks.jsonl")
+    chunks_for_embedding = load_chunks_jsonl(out_dir / "chunks.jsonl")
     
     # embed chunks
     embedder = Embedder()
     embedded_chunks = embedder.embed_chunks(chunks_for_embedding)
-    print(embedded_chunks)
 
     # save embeddings
     write_jsonl(embedded_chunks, out_dir / "embeddings.jsonl")
