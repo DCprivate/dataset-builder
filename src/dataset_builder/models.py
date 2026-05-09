@@ -28,6 +28,6 @@ class ChunkRecord:
 class EmbeddedChunk:
     chunk_id: str
     doc_id: str
-    text: str
+    #text: str
     embedding: list[float]
     metadata: dict[str, Any] = field(default_factory=dict)

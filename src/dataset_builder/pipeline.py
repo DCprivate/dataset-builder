@@ -2,19 +2,6 @@ from dataset_builder.registry import ingest_source
 from dataset_builder.chunking import Chunker
 
 
-"""def build_documents(sources):
-    documents = []
-
-    for kind, value in ((source["kind"], source["value"]) for source in sources):
-        try:
-            doc = ingest_source(kind, value)
-            documents.append(doc)
-        except Exception as exc:
-            print(f"[ERROR] {kind} -> {value}")
-            print(f"        {exc}")
-
-    return documents"""
-
 def build_documents(sources: list[dict]):
     documents = []
     failures = []
