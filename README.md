@@ -22,7 +22,7 @@ That order goes from data model → behavior → orchestration
 - PDFs
 - Plain text / markdown / notes
 - YouTube videos (via transcript extraction)
-- Textbook-like document inputs that can be parsed as PDF or plain text.
+- Textbook-like document inputs that can be parsed as PDF or plain text
 
 ## Output
 The pipeline writes two layers:
