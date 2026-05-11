@@ -107,6 +107,7 @@ class Chunker:
 
         return all_chunks
     
+
     def print_chunks(self, chunks: EmbeddedChunk):
         for chunk in chunks[:3]:
             print("-" * 80)
