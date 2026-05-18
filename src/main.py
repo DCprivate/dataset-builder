@@ -16,8 +16,10 @@ from dataset_builder.ingest.youtube import YouTubeIngester
 
 def main():
     # load sources
-    sources = load_sources("../config/source.json")
+    sources = load_sources("../config/sources.json")
     documents, failures = build_documents(sources)
+    
+    print(sources)
     
     # chunk sources
     chunker = Chunker(chunk_size=900, chunk_overlap=150, min_chunk_chars=200)

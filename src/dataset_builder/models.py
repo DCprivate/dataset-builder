@@ -14,6 +14,7 @@ class NormalizedDocument:
 
 @dataclass
 class ChunkRecord:
+    #artifact_version: str
     chunk_id: str
     doc_id: str
     text: str
@@ -26,6 +27,7 @@ class ChunkRecord:
 
 @dataclass
 class EmbeddedChunk:
+    #artifact_version: str
     chunk_id: str
     doc_id: str
     #text: str
