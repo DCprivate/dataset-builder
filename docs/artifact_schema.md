@@ -17,7 +17,7 @@ All artifact records should include:
 
 Current version:
 
-- `artifact_version = "1.0"`
+- `artifact_version = "1.0.1"`
 
 If the structure changes in a breaking way, increment the version.
 
@@ -47,7 +47,7 @@ Stores one normalized document per ingested source.
 
 ```json
 {
-  "artifact_version": "float",
+  "artifact_version": "string",
   "doc_id": "string",
   "source_type": "string",
   "source_uri": "string",
@@ -99,7 +99,7 @@ Stores retrieval-sized chunks derived from normalized documents.
 
 ```json
 {
-  "artifact_version": "1.0",
+  "artifact_version": "string",
   "chunk_id": "string",
   "doc_id": "string",
   "text": "string",
@@ -162,7 +162,7 @@ Stores embeddings for chunks.
 
 ```json
 {
-  "artifact_version": "float",
+  "artifact_version": "string",
   "chunk_id": "string",
   "doc_id": "string",
   "embedding": [0.1, -0.2, 0.3],
@@ -222,7 +222,7 @@ Stores ingestion or processing failures without stopping the entire pipeline.
 
 ```json
 {
-  "artifact_version": "float",
+  "artifact_version": "string",
   "kind": "string",
   "value": "string",
   "error": "string"
