@@ -1,5 +1,5 @@
 from dataset_builder.schema import ARTIFACT_VERSION
-from dataset_builder.models import NormalizedDocument, ChunkRecord, EmbeddedRecord
+from dataset_builder.models import NormalizedDocument, ChunkRecord, ChunkEmbedding
 
 
 class Chunker:
@@ -112,7 +112,7 @@ class Chunker:
         return all_chunks
     
 
-    def print_chunks(self, chunks: EmbeddedRecord):
+    def print_chunks(self, chunks: ChunkEmbedding):
         for chunk in chunks[:3]:
             print("-" * 80)
             print(f"chunk_id: {chunk.chunk_id}")
