@@ -1,9 +1,11 @@
 from pathlib import Path
 from pypdf import PdfReader
 
+from dataset_builder.schema import ARTIFACT_VERSION
 from dataset_builder.ingest.base import BaseIngester
 from dataset_builder.models import NormalizedDocument
 from dataset_builder.utils import sha256_text, normalize_whitespace, title_from_path
+
 
 class PdfIngester(BaseIngester):
     def ingest(self, value: str) -> NormalizedDocument:
@@ -31,6 +33,7 @@ class PdfIngester(BaseIngester):
         doc_id = sha256_text(f"pdf::{value}::{normalized[:4000]}")
 
         return NormalizedDocument(
+            artifact_version=ARTIFACT_VERSION,
             doc_id=doc_id,
             source_type="pdf",
             source_uri=str(path),

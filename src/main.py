@@ -7,7 +7,7 @@ from dataset_builder.io import load_sources, write_jsonl, read_jsonl, ensure_dir
 from dataset_builder.registry import ingest_source
 from dataset_builder.pipeline import build_documents
 from dataset_builder.chunking import Chunker
-from dataset_builder.embed import Embedder
+from dataset_builder.embedding import Embedder
 from dataset_builder.ingest.text import TextIngester
 from dataset_builder.ingest.pdf import PdfIngester
 from dataset_builder.ingest.web import WebsiteIngester
@@ -15,18 +15,21 @@ from dataset_builder.ingest.youtube import YouTubeIngester
 
 
 def main():
+    # set output directory
+    out_dir = ensure_dir("../output")
+    
     # load sources
     sources = load_sources("../config/sources.json")
     documents, failures = build_documents(sources)
     
-    print(sources)
+    path_to_documents = write_jsonl(documents, out_dir / "documents.jsonl")
+    path_to_failures = write_jsonl(failures, out_dir / "failures.jsonl")
     
     # chunk sources
     chunker = Chunker(chunk_size=900, chunk_overlap=150, min_chunk_chars=200)
     chunks = chunker.chunk_documents(documents)
     
     # write chunks to jsonl file
-    out_dir = ensure_dir("../output")
     path_to_chunks = write_jsonl(chunks, out_dir / "chunks.jsonl")
     
     # read chunks from jsonl file

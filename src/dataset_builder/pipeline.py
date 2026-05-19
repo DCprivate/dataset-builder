@@ -8,7 +8,7 @@ def build_documents(sources: list[dict]):
 
     for kind, value in ((source["kind"], source["value"]) for source in sources):
         try:
-            doc = ingest_source(kind, value)
+            doc = ingest_source(kind, value) # failing here
             documents.append(doc)
         except Exception as exc:
             failures.append({

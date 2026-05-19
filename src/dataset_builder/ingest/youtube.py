@@ -1,7 +1,7 @@
 from urllib.parse import parse_qs, urlparse
-
 from youtube_transcript_api import YouTubeTranscriptApi
 
+from dataset_builder.schema import ARTIFACT_VERSION
 from dataset_builder.ingest.base import BaseIngester
 from dataset_builder.models import NormalizedDocument
 from dataset_builder.utils import normalize_whitespace, sha256_text
@@ -61,6 +61,7 @@ class YouTubeIngester(BaseIngester):
         doc_id = sha256_text(f"youtube::{video_id}::{joined[:4000]}")
 
         return NormalizedDocument(
+            artifact_version=ARTIFACT_VERSION,
             doc_id=doc_id,
             source_type="youtube",
             source_uri=value,

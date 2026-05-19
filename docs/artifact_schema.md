@@ -47,7 +47,7 @@ Stores one normalized document per ingested source.
 
 ```json
 {
-  "artifact_version": "1.0",
+  "artifact_version": "float",
   "doc_id": "string",
   "source_type": "string",
   "source_uri": "string",
@@ -56,16 +56,6 @@ Stores one normalized document per ingested source.
   "metadata": {}
 }
 ```
-
-### Required fields
-
-- `artifact_version`: string
-- `doc_id`: string
-- `source_type`: string
-- `source_uri`: string
-- `title`: string or null
-- `text`: string
-- `metadata`: object
 
 ### Notes
 
@@ -117,15 +107,6 @@ Stores retrieval-sized chunks derived from normalized documents.
   "metadata": {}
 }
 ```
-
-### Required fields
-
-- `artifact_version`: string
-- `chunk_id`: string
-- `doc_id`: string
-- `text`: string
-- `token_estimate`: integer
-- `metadata`: object
 
 ### Notes
 
@@ -181,21 +162,13 @@ Stores embeddings for chunks.
 
 ```json
 {
-  "artifact_version": "1.0",
+  "artifact_version": "float",
   "chunk_id": "string",
   "doc_id": "string",
   "embedding": [0.1, -0.2, 0.3],
   "metadata": {}
 }
 ```
-
-### Required fields
-
-- `artifact_version`: string
-- `chunk_id`: string
-- `doc_id`: string
-- `embedding`: array of floats
-- `metadata`: object
 
 ### Notes
 
@@ -249,19 +222,12 @@ Stores ingestion or processing failures without stopping the entire pipeline.
 
 ```json
 {
-  "artifact_version": "1.0",
+  "artifact_version": "float",
   "kind": "string",
   "value": "string",
   "error": "string"
 }
 ```
-
-### Required fields
-
-- `artifact_version`: string
-- `kind`: string
-- `value`: string
-- `error`: string
 
 ### Notes
 

@@ -4,6 +4,7 @@ from typing import Any
 
 @dataclass
 class NormalizedDocument:
+    artifact_version: str
     doc_id: str
     source_type: str
     source_uri: str
@@ -14,7 +15,7 @@ class NormalizedDocument:
 
 @dataclass
 class ChunkRecord:
-    #artifact_version: str
+    artifact_version: str
     chunk_id: str
     doc_id: str
     text: str
@@ -26,8 +27,8 @@ class ChunkRecord:
 
 
 @dataclass
-class EmbeddedChunk:
-    #artifact_version: str
+class EmbeddedRecord:
+    artifact_version: str
     chunk_id: str
     doc_id: str
     #text: str
