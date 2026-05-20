@@ -13,6 +13,12 @@ from dataset_builder.ingest.pdf import PdfIngester
 from dataset_builder.ingest.web import WebsiteIngester
 from dataset_builder.ingest.youtube import YouTubeIngester
 
+"""
+IMPORTANT: 
+Make embedding optional
+Put the chunking policy (when that is implemented) in the schema?
+
+"""
 
 def main():
     # set output directory
