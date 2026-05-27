@@ -166,4 +166,4 @@ sources:
 ## Notes
 - Scanned/image-only PDFs may need OCR. This project first tries text-native extraction.
 - YouTube transcripts depend on transcript availability.
-- Website extraction focuses on main article/body content rather than full DOM capture.
+- Website extraction focuses on main article/body content rather than full DOM capture
