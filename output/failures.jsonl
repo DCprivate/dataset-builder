@@ -1,4 +1,0 @@
-{"kind": "youtube", "value": "https://www.youtube.com/c/pbsspacetime", "error": "Could not parse YouTube video id from: https://www.youtube.com/c/pbsspacetime"}
-{"kind": "youtube", "value": "https://www.youtube.com/playlist?list=PLKjJE86mQRts9U9Dc0js8x_jyzeIqfLGl", "error": "Could not parse YouTube video id from: https://www.youtube.com/playlist?list=PLKjJE86mQRts9U9Dc0js8x_jyzeIqfLGl"}
-{"kind": "youtube", "value": "https://www.youtube.com/user/fermilab", "error": "Could not parse YouTube video id from: https://www.youtube.com/user/fermilab"}
-{"kind": "youtube", "value": "https://www.youtube.com/playlist?list=PLCfRa7MXBEsq5JoO2gU3yWhxTr06SY2De", "error": "Could not parse YouTube video id from: https://www.youtube.com/playlist?list=PLCfRa7MXBEsq5JoO2gU3yWhxTr06SY2De"}
