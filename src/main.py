@@ -32,7 +32,7 @@ def main():
     path_to_failures = write_jsonl(failures, out_dir / "failures.jsonl")
     
     # chunk sources
-    chunker = Chunker(chunk_size=900, chunk_overlap=200, min_chunk_chars=200)
+    chunker = Chunker(chunk_size=900, chunk_overlap=200, min_chunk_chars=100)
     chunks = chunker.chunk_documents(documents)
     
     # write chunks to jsonl file
